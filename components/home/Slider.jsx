@@ -6,8 +6,6 @@ const Slider = () => {
     return (
         <>
             <div className="slider-background">
-            {//test 
-            }
             </div>
             <style jsx>{` 
                 .slider-background{
