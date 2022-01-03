@@ -19,7 +19,6 @@ const path = () => sliderData[0].url;
 //   }
 
 const Slider = () => {
-    console.log(sliderData)
     return (
         <>
             <div className="slider-background">
