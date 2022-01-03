@@ -4,7 +4,6 @@ import TopMenu from '../components/home/TopMenu'
 import Slider from '../components/home/Slider'
 import Menu from '../components/home/Menu'
 import styles from '../styles/Home.module.css'
-import TopMenu from '../components/TopMenu'
 export default function Home() {
   return (
     <div>

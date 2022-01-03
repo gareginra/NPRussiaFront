@@ -1,13 +1,13 @@
 import Link from "next/link";
 import Image from "next/dist/client/image";
 import MenuButton from "./MenuButton";
-import fb from "../data/files/images/fb.png";
-import vk from "../data/files/images/vk.png";
-import telegram from "../data/files/images/telegram.png";
-import twitter from "../data/files/images/twitter.png";
-import rss from "../data/files/images/rss.png";
-import helper from "../data/files/images/helper-bottom.png";
-import search from "../data/files/images/search.png";
+import fb from "/data/files/images/fb.png";
+import vk from "/data/files/images/vk.png";
+import telegram from "/data/files/images/telegram.png";
+import twitter from "/data/files/images/twitter.png";
+import rss from "/data/files/images/rss.png";
+import helper from "/data/files/images/helper-bottom.png";
+import search from "/data/files/images/search.png";
 export default function TopMenu () {
     return (
         <div>
@@ -56,6 +56,7 @@ export default function TopMenu () {
                 left: 0px;
                 width: 100%;
                 background-color: #ffffff;
+                height: 50px;
             }
             nav {
                 width: 1320px;
