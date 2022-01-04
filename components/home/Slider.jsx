@@ -1,9 +1,9 @@
 "use strict";
 
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import sliderData from "/data/files/slider-images.js";
-import testPic from "/data/files/images/slider/1.jpg";
+import arrows from "/data/files/images/banner_arrows.png"
 const path = () => sliderData[0].url;
 
 // const MyImage = (props) => {
@@ -19,17 +19,51 @@ const path = () => sliderData[0].url;
 //   }
 
 const Slider = () => {
+    const [selectedPic, setCount] = useState(0);
+    const leftImageSrc = selectedPic?sliderData[selectedPic-1].url:sliderData[sliderData.length-1].url;
+    const mainImageSrc = sliderData[selectedPic].url;
+    const rightImageSrc = (selectedPic === sliderData.length-1)?sliderData[0].url:sliderData[selectedPic+1].url;
     return (
         <>
             <div className="slider-background">
                 <div className="left slide">
-                    <Image src={testPic} />
+                    <Image
+                        priority
+                        src={leftImageSrc}
+                        height='1000%'
+                        width='1000vw'
+                        objectFit="cover"
+                    />
+                    <div className="shader" />
+                    <div className="arrowBox">
+                        <div className="leftArrow arrow" onClick={() => selectedPic?setCount(selectedPic-1):setCount(selectedPic = sliderData.length-1)}>
+                            <Image src={arrows} className="leftArrow" objectFit="none"/>
+                        </div>
+                    </div>
                 </div>
-                <div className="mainSlide">
-
+                <div className="mainSlide slide">
+                    <Image
+                            priority
+                            src={mainImageSrc}
+                            height='1000%'
+                            width='1000vw'
+                            objectFit="cover"
+                    />
                 </div>
                 <div className="right slide">
-                    <Image src={testPic} />
+                    <Image
+                            priority
+                            src={rightImageSrc}
+                            height='1000%'
+                            width='1000vw'
+                            objectFit="cover"
+                    />
+                    <div className="shader" />
+                    <div className="arrowBox">
+                        <div className="rightArrow arrow" onClick={() => (selectedPic===sliderData.length-1)?setCount(selectedPic = 0):setCount(selectedPic+1)}>
+                            <Image src={arrows} className="rightArrow" objectFit="none"/>
+                        </div>
+                    </div>
                 </div>
             </div>
             <style jsx>{` 
@@ -38,17 +72,23 @@ const Slider = () => {
                     position: relative;
                     width: 100%;
                     min-height:300px;
-                    background:brown;
-                    z-index:-1;
-                    margin-top: 50px;
+                    top: 50px;
+                    overflow: visible;
                 }
                 .slide {
-                    display:block;
-                    position: relative;
-                    width: 33vw;
-                    min-height:300px;
-                    background-color: black;
-                    opacity: 10%;
+                    width: 33.3vw;
+                    height:100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .shader {
+                    z-index:1;
+                    position: absolute;
+                    background-color:black;
+                    width: inherit;
+                    height: inherit;
+                    opacity: 80%;
                 }
                 .left {
                     float: left;
@@ -56,10 +96,36 @@ const Slider = () => {
                 .right {
                     margin-left: auto;
                 }
+                .arrowBox {
+                    position: absolute;
+                    z-index:2;
+                    height: 70px;
+                    width: 70px;
+                    overflow: hidden;
+                    display:block;
+                }
+                .leftArrow {
+                    width: 140px;
+                    height: 210px;
+                }
+                .rightArrow {
+                    width: 140px;
+                    height: 210px;
+                    margin-left: -70px;
+                }
+                .arrow:hover {
+                    margin-top: -70px;
+                    cursor: pointer;
+                }
             `}</style>
         </>
     );
 
 }
 
+// function changePic(arg) {
+//     if (arg==="left") {
+        
+//     }
+// }
 export default Slider;

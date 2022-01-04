@@ -49,6 +49,7 @@ export default function TopMenu () {
             </div>
         <style jsx>{`
             .topbar {
+                z-index:10;
                 display: flex;
                 flex-wrap: nowrap;
                 position: fixed;
