@@ -1,5 +1,5 @@
 "use strict";
-
+import Menu from "./Menu.jsx"
 import React, { useState } from "react";
 import Image from "next/image";
 import sliderData from "/data/files/slider-images.js";
@@ -37,7 +37,7 @@ const Slider = () => {
                     <div className="shader" />
                     <div className="arrowBox">
                         <div className="leftArrow arrow" onClick={() => selectedPic?setCount(selectedPic-1):setCount(selectedPic = sliderData.length-1)}>
-                            <Image src={arrows} className="leftArrow" objectFit="none"/>
+                            <Image src={arrows} className="leftArrow" objectFit="fill"/>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@ const Slider = () => {
                     <div className="shader" />
                     <div className="arrowBox">
                         <div className="rightArrow arrow" onClick={() => (selectedPic===sliderData.length-1)?setCount(selectedPic = 0):setCount(selectedPic+1)}>
-                            <Image src={arrows} className="rightArrow" objectFit="none"/>
+                            <Image src={arrows} className="rightArrow" objectFit="fill"/>
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,6 @@ const Slider = () => {
                     display: flex;
                     position: relative;
                     width: 100%;
-                    min-height:300px;
                     top: 50px;
                     overflow: visible;
                 }
@@ -105,19 +104,22 @@ const Slider = () => {
                     display:block;
                 }
                 .leftArrow {
-                    width: 140px;
-                    height: 210px;
+                    width: 200%;
+                    height: 300%;
                 }
                 .rightArrow {
-                    width: 140px;
-                    height: 210px;
-                    margin-left: -70px;
+                    width: 200%;
+                    height: 300%;
+                    margin-left: -100%;
                 }
                 .arrow:hover {
-                    margin-top: -70px;
+                    margin-top: -100%;
                     cursor: pointer;
+                    transition-property: color;
+                    transition-duration: .2s;
                 }
             `}</style>
+            {/* <Menu /> */}
         </>
     );
 

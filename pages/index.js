@@ -13,8 +13,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <TopMenu />      
-      <Slider/>
+      <Slider />
       <Menu/>
+      {/* <style jsx>{
+        `body{display:flex}`
+      }
+
+      </style> */}
     </div>
   )
 }

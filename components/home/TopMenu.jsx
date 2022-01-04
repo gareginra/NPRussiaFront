@@ -10,7 +10,7 @@ import helper from "/data/files/images/helper-bottom.png";
 import search from "/data/files/images/search.png";
 export default function TopMenu () {
     return (
-        <div>
+        <>
             <div className="topbar">
                 <nav>
                     <div className="categories">
@@ -49,12 +49,9 @@ export default function TopMenu () {
             </div>
         <style jsx>{`
             .topbar {
-                z-index:10;
+                z-index:2;
                 display: flex;
-                flex-wrap: nowrap;
                 position: fixed;
-                top: 0px;
-                left: 0px;
                 width: 100%;
                 background-color: #ffffff;
                 height: 50px;
@@ -124,6 +121,6 @@ export default function TopMenu () {
                 cursor: pointer;
             }
         `}</style>
-        </div>
+        </>
     )
 }   
