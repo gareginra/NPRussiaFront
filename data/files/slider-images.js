@@ -1,7 +1,7 @@
 export default [
     {
     title:"Name of image 1",
-    description:"",
+    description:"Here goes the description of image 1",
     url:"/images/slider/1.jpg"
     },
     {

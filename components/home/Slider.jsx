@@ -1,28 +1,17 @@
 "use strict";
-import Menu from "./Menu.jsx"
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import sliderData from "/data/files/slider-images.js";
-import arrows from "/data/files/images/banner_arrows.png"
-const path = () => sliderData[0].url;
-
-// const MyImage = (props) => {
-//     return (
-//       <Image
-//         loader={path}
-//         src={sliderData[0].url}
-//         alt="Picture of the author"
-//         width={500}
-//         height={500}
-//       />
-//     )
-//   }
+import arrows from "/data/files/images/banner-arrows.png";
+let descriptionBar = 0;
 
 const Slider = () => {
     const [selectedPic, setCount] = useState(0);
     const leftImageSrc = selectedPic?sliderData[selectedPic-1].url:sliderData[sliderData.length-1].url;
     const mainImageSrc = sliderData[selectedPic].url;
     const rightImageSrc = (selectedPic === sliderData.length-1)?sliderData[0].url:sliderData[selectedPic+1].url;
+    const mainSlideData = {title: sliderData[selectedPic].title, description: sliderData[selectedPic].description};
+    
     return (
         <>
             <div className="slider-background">
@@ -37,18 +26,24 @@ const Slider = () => {
                     <div className="shader" />
                     <div className="arrowBox">
                         <div className="leftArrow arrow" onClick={() => selectedPic?setCount(selectedPic-1):setCount(selectedPic = sliderData.length-1)}>
-                            <Image src={arrows} className="leftArrow" objectFit="fill"/>
+                            <Image src={arrows} objectFit="fill"/>
                         </div>
                     </div>
                 </div>
-                <div className="mainSlide slide">
-                    <Image
-                            priority
-                            src={mainImageSrc}
-                            height='1000%'
-                            width='1000vw'
-                            objectFit="cover"
+                <div className="mainSlide">
+                    <Image           
+                        priority
+                        src={mainImageSrc}
+                        height='1000%'
+                        width='1000vw'
+                        objectFit="cover"
                     />
+                    <div className="mainSlideShader">
+                        <div className="text">
+                            <p className="title">{mainSlideData.title}</p>
+                            <p className="description">{mainSlideData.description}</p>
+                        </div>
+                    </div>
                 </div>
                 <div className="right slide">
                     <Image
@@ -61,33 +56,44 @@ const Slider = () => {
                     <div className="shader" />
                     <div className="arrowBox">
                         <div className="rightArrow arrow" onClick={() => (selectedPic===sliderData.length-1)?setCount(selectedPic = 0):setCount(selectedPic+1)}>
-                            <Image src={arrows} className="rightArrow" objectFit="fill"/>
+                            <Image src={arrows} objectFit="fill"/>
                         </div>
                     </div>
                 </div>
             </div>
-            <style jsx>{` 
+            <style jsx>{`
                 .slider-background{
                     display: flex;
                     position: relative;
                     width: 100%;
                     top: 50px;
-                    overflow: visible;
+                    overflow: hidden;
                 }
-                .slide {
-                    width: 33.3vw;
+                .mainSlide {
+                    position: relative;
+                    width: 33.3333vw;
                     height:100%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    border-bottom: 5px solid red;
+                    object-fit: cover;
+                }
+                .slide {
+                    width: 33.3333vw;
+                    height:100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-bottom: 5px solid grey;
                 }
                 .shader {
-                    z-index:1;
                     position: absolute;
                     background-color:black;
                     width: inherit;
                     height: inherit;
                     opacity: 80%;
+                    margin-top: -5px;
                 }
                 .left {
                     float: left;
@@ -110,24 +116,84 @@ const Slider = () => {
                 .rightArrow {
                     width: 200%;
                     height: 300%;
+                    transition-property: all .2s;
                     margin-left: -100%;
                 }
                 .arrow:hover {
                     margin-top: -100%;
                     cursor: pointer;
-                    transition-property: color;
-                    transition-duration: .2s;
+                }
+                .mainSlideShader {
+                    position: absolute;
+                    bottom: 0px;
+                    width: 33.3333vw;
+                    display: block;
+                    font-family: 'ConquerorText';
+                    line-height: 30px;
+                    text-align: center;
+                    cursor: pointer;
+                    height: auto;
+                    max-height: 100px;
+                    transition: all 1s;
+                    background: rgba(0, 0, 0, 0.6);
+                }
+                .mainSlideShader:hover {
+                    max-height: 500px;
+                }
+                .text {
+                    z-index:2;
+                    color: white;
+                }
+                .title {
+                    font-size: 30px;
+                    font-weight: bold;
+                }
+                .description {
+                    position: absolute;
+                    font-size: 21px;
+                    overflow: hidden;
+                    transition: all 2s linear;
+                }
+                .description:hover {
+                    overflow: visible;
                 }
             `}</style>
-            {/* <Menu /> */}
+            <div dangerouslySetInnerHTML={{
+       
+                __html: `
+                    <script>
+                        if (typeof window !== undefined) {
+                            let shaderDiv = document.getElementsByClassName('mainSlideShader')[0];
+                            let descDiv;
+                            let temp;
+                            let counter = 0;
+                            let interval;
+                            shaderDiv.addEventListener('mouseenter', () => {
+                                descDiv = document.getElementsByClassName('description')[0];
+                                temp = descDiv.innerHTML;
+                                descDiv.innerHTML = '';
+                                interval = setInterval(() => {
+                                    if (counter < temp.length) {
+                                        descDiv.innerHTML += temp[counter];
+                                        counter++;
+                                    }
+                                }, 10)
+                                descDiv.style.visibility = 'visible';
+                                descDiv.style.position = 'relative';
+                                shaderDiv.style.maxHeight = '';
+                            });
+                            shaderDiv.addEventListener('mouseleave', () => {
+                                clearInterval(interval);
+                                descDiv.innerHTML = temp;
+                                counter = 0;
+                                descDiv.style.position = 'absolute';
+                                shaderDiv.style.maxHeight = '100px';
+                                descDiv.style.visibility = 'hidden';
+                            });
+                        }
+                    </script>`
+            }}/>
         </>
     );
-
 }
-
-// function changePic(arg) {
-//     if (arg==="left") {
-        
-//     }
-// }
 export default Slider;
