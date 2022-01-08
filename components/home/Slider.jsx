@@ -67,8 +67,7 @@ const Slider = () => {
                     position: relative;
                     width: 100%;
                     overflow: hidden;
-                    min-width: 1000px;
-                    height: 600px;
+                    height: 20rem;
                 }
                 .mainSlide {
                     position: relative;

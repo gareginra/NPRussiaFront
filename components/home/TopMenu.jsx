@@ -18,14 +18,12 @@ export default function TopMenu () {
                         <MenuButton link="/donate" text="Помоги сайту" />
                         <MenuButton link="/subscribe" text="Рассылка" />
                     </div>
-                    <div className="logo-box">
-                        <div className="logo">
-                            <Link href="/">
-                                <a>
-                                    NP Russia
-                                </a>
-                            </Link>
-                        </div>
+                    <div className="logo">
+                        <Link href="/">
+                            <a>
+                                NP Russia
+                            </a>
+                        </Link>
                     </div>
                     <span className="right-side">
                         <div className="links">
@@ -51,79 +49,97 @@ export default function TopMenu () {
             </div>
         <style jsx>{`
             .topbar {
+                width: 100%;
                 z-index:2;
                 display: flex;
-                position: relative;
-                min-width: 100rem;
+                position: fixed;
                 background-color: #ffffff;
-                min-height: 3rem;
-                align-items:center;
-                justify-content: center;
+                margin: 0 auto 0 auto;
+                min-height:3rem;
             }
             nav {
-                position: absolute;
-                width: 80rem;
-                min-width: 400px;
-                margin: auto;
+                justify-content: space-between;
+                margin: 0 auto 0 auto;
+                width:80rem;
                 display: flex;
-                align-items:center;
-                justify-content: center;
             }
             .categories {
+                height: 50px;
                 display: flex;
                 font-weight: bold;
-                float: left;
-            }
-            .logo-box {
-                position: relative;
-                font-size: 1.5rem;
-                font-weight: bold;
-                margin: auto;
-                align-items:center;
-                justify-content: center;
+                white-space: nowrap;
             }
             .logo {
-                margin-right: 1.5rem;
-                padding-left: 1.5rem;
+                position: absolute;
+                left: 50%;
+                font-size: 25px;
+                margin-left: -55px;
+                padding-top: 17px;
+                font-weight: bold;
+                padding-right: 0px;
+                white-space: nowrap;
             }
             .right-side {
-                height:3em;
                 display: flex;
+                margin-left: auto;
                 position: relative;
             }
             .links {
                 display: flex;
-                height: 3rem;
+                height:50px;
+                padding-right:0px;
+                outline: none;
                 overflow: hidden;
             }
             .helper {
-                position: relative;
+                margin: 0px;
+                padding: 0px;
+                outline: none;
+                padding-right: 0px;
                 font-weight: bold;
-                height: 3rem;
-                width: 4rem;
+                width: 70px;
+                height: 50px;
+                overflow: visible;
                 border-top: 3px solid #c31e1e;
                 background-color: #d92121;
-                font-size: .62rem;
+                font-size: 10px;
                 color: #ffffff;
-                letter-spacing: .1rem;
-                line-height: .93rem;
+                letter-spacing: 1px;
+                line-height: 15px;
                 text-transform: uppercase;
                 text-align: center;
-                padding-top: 0.5rem;
+                padding-top: 10px;
             }
             .helper:hover {
-                overflow: visible;
-                padding-top: 0.9rem;
-                height: 3.4rem;
+                padding-top: 15px;
+                height: 55px;
                 transition-duration: .2s;
             }
             .searchBox {
+                height: 50px;
                 overflow:hidden;
                 padding-right: 0px;
             }
             .search:hover {
-                margin-top: -100%;
+                margin-top: -50px;
                 cursor: pointer;
+            }
+            @media (min-width: 120px) {
+                nav {
+                    max-width:80rem;
+                    flex-wrap: wrap;
+                }
+                .logo {
+                    margin: 1rem 0 1rem 0;
+                }
+            }
+            @media (min-width: 800px) {
+                .right-side{
+                    visibility: visible;
+                }
+                .logo {
+                    margin: 0;
+                }
             }
         `}</style>
         </>
