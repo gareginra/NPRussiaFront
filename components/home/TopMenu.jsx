@@ -18,12 +18,14 @@ export default function TopMenu () {
                         <MenuButton link="/donate" text="Помоги сайту" />
                         <MenuButton link="/subscribe" text="Рассылка" />
                     </div>
-                    <div className="logo">
-                        <Link href="/">
-                            <a>
-                                NP Russia
-                            </a>
-                        </Link>
+                    <div className="logo-box">
+                        <div className="logo">
+                            <Link href="/">
+                                <a>
+                                    NP Russia
+                                </a>
+                            </Link>
+                        </div>
                     </div>
                     <span className="right-side">
                         <div className="links">
@@ -51,73 +53,76 @@ export default function TopMenu () {
             .topbar {
                 z-index:2;
                 display: flex;
-                position: fixed;
-                width: 100%;
+                position: relative;
+                min-width: 100rem;
                 background-color: #ffffff;
-                height: 50px;
+                min-height: 3rem;
+                align-items:center;
+                justify-content: center;
             }
             nav {
-                width: 1320px;
+                position: absolute;
+                width: 80rem;
+                min-width: 400px;
                 margin: auto;
                 display: flex;
+                align-items:center;
+                justify-content: center;
             }
             .categories {
-                height: 50px;
                 display: flex;
                 font-weight: bold;
+                float: left;
+            }
+            .logo-box {
+                position: relative;
+                font-size: 1.5rem;
+                font-weight: bold;
+                margin: auto;
+                align-items:center;
+                justify-content: center;
             }
             .logo {
-                position: absolute;
-                left: 50%;
-                font-size: 25px;
-                margin-left: -55px;
-                padding-top: 17px;
-                font-weight: bold;
-                padding-right: 0px;
+                margin-right: 1.5rem;
+                padding-left: 1.5rem;
             }
             .right-side {
+                height:3em;
                 display: flex;
-                margin-left: auto;
                 position: relative;
             }
             .links {
                 display: flex;
-                height:50px;
-                padding-right:0px;
-                outline: none;
+                height: 3rem;
                 overflow: hidden;
             }
             .helper {
-                margin: 0px;
-                padding: 0px;
-                outline: none;
-                padding-right: 0px;
+                position: relative;
                 font-weight: bold;
-                width: 70px;
-                height: 50px;
-                overflow: visible;
+                height: 3rem;
+                width: 4rem;
                 border-top: 3px solid #c31e1e;
                 background-color: #d92121;
-                font-size: 10px;
+                font-size: .62rem;
                 color: #ffffff;
-                letter-spacing: 1px;
-                line-height: 15px;
+                letter-spacing: .1rem;
+                line-height: .93rem;
                 text-transform: uppercase;
                 text-align: center;
-                padding-top: 10px;
+                padding-top: 0.5rem;
             }
             .helper:hover {
-                padding-top: 15px;
-                height: 55px;
+                overflow: visible;
+                padding-top: 0.9rem;
+                height: 3.4rem;
                 transition-duration: .2s;
             }
             .searchBox {
-                height: 50px;
                 overflow:hidden;
                 padding-right: 0px;
             }
             .search:hover {
-                margin-top: -50px;
+                margin-top: -100%;
                 cursor: pointer;
             }
         `}</style>

@@ -6,7 +6,7 @@ import arrows from "/data/files/images/banner-arrows.png";
 let descriptionBar = 0;
 
 const Slider = () => {
-    const [selectedPic, setCount] = useState(0);
+    const [selectedPic, setSelectedPic] = useState(0);
     const leftImageSrc = selectedPic?sliderData[selectedPic-1].url:sliderData[sliderData.length-1].url;
     const mainImageSrc = sliderData[selectedPic].url;
     const rightImageSrc = (selectedPic === sliderData.length-1)?sliderData[0].url:sliderData[selectedPic+1].url;
@@ -19,13 +19,13 @@ const Slider = () => {
                     <Image
                         priority
                         src={leftImageSrc}
-                        height='1000%'
+                        height='600px'
                         width='1000vw'
                         objectFit="cover"
                     />
                     <div className="shader" />
                     <div className="arrowBox">
-                        <div className="leftArrow arrow" onClick={() => selectedPic?setCount(selectedPic-1):setCount(selectedPic = sliderData.length-1)}>
+                        <div className="leftArrow arrow" onClick={() => selectedPic?setSelectedPic(selectedPic-1):setSelectedPic(selectedPic = sliderData.length-1)}>
                             <Image src={arrows} objectFit="fill"/>
                         </div>
                     </div>
@@ -34,7 +34,7 @@ const Slider = () => {
                     <Image           
                         priority
                         src={mainImageSrc}
-                        height='1000%'
+                        height='600px'
                         width='1000vw'
                         objectFit="cover"
                     />
@@ -55,7 +55,7 @@ const Slider = () => {
                     />
                     <div className="shader" />
                     <div className="arrowBox">
-                        <div className="rightArrow arrow" onClick={() => (selectedPic===sliderData.length-1)?setCount(selectedPic = 0):setCount(selectedPic+1)}>
+                        <div className="rightArrow arrow" onClick={() => (selectedPic===sliderData.length-1)?setSelectedPic(selectedPic = 0):setSelectedPic(selectedPic+1)}>
                             <Image src={arrows} objectFit="fill"/>
                         </div>
                     </div>
@@ -66,13 +66,13 @@ const Slider = () => {
                     display: flex;
                     position: relative;
                     width: 100%;
-                    top: 50px;
                     overflow: hidden;
+                    min-width: 1000px;
+                    height: 600px;
                 }
                 .mainSlide {
                     position: relative;
                     width: 33.3333vw;
-                    height:100%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -81,7 +81,7 @@ const Slider = () => {
                 }
                 .slide {
                     width: 33.3333vw;
-                    height:100%;
+                    height: inherit;
                     display: flex;
                     align-items: center;
                     justify-content: center;

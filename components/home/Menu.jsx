@@ -23,7 +23,6 @@ const Menu = () => {
             </div>
             <style jsx>{` 
                 .menu-background{
-                    margin-top:50px;
                     z-index:2;
                     width: 100%;
                     height:50px;

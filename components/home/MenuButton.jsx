@@ -21,17 +21,11 @@ export default function menuButton ({link, text, img}) {
             </div>
 
             <style jsx>{`
-                .button{
-                    margin: 0px;
-                    padding: 0px;
-                    outline: none;
-                }
                 .text {
                     font-family: inherit;
-                    font-size: 14px;
-                    color: #inherit;
-                    margin-top: 17px;
-                    margin-right: 25px;
+                    padding: 1rem 0 1rem 0  ;
+                    font-size: 1rem;
+                    margin: auto .75rem auto .75rem;
                     text-align: center;
                 }
                 .text:hover {
@@ -41,12 +35,14 @@ export default function menuButton ({link, text, img}) {
                     cursor: pointer;
                 }
                 .image {
-                    width: 50px;
-                    height: 50px;
                     display: block;
+                    width: 100%;
+                    height: 50%;
+                    min-height: 3em;
+                    overflow: hidden;
                 }
                 .image:hover {
-                    margin-top: -50px;
+                    margin-top: -100%;
                     cursor: pointer;
                 }
             `}</style>
