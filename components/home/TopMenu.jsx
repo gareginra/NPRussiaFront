@@ -1,6 +1,8 @@
+ 
 import Link from "next/link";
 import Image from "next/dist/client/image";
 import MenuButton from "./MenuButton";
+import Menu from "/components/home/Menu.jsx";
 import fb from "/data/files/images/fb.png";
 import vk from "/data/files/images/vk.png";
 import telegram from "/data/files/images/telegram.png";
@@ -8,9 +10,50 @@ import twitter from "/data/files/images/twitter.png";
 import rss from "/data/files/images/rss.png";
 import helper from "/data/files/images/helper-bottom.png";
 import search from "/data/files/images/search.png";
+import nav from "/data/files/images/nav.png";
+import searchMob from "/data/files/images/searchMob.png";
+import cross from "/data/files/images/header_close.png";
+import { useState } from "react";
 export default function TopMenu () {
+    const [clicked, setClick] = useState(false);
+    const [menu, setMenu] = useState(false);
     return (
         <>
+            {!clicked ?
+                <div className="mobileTopbar">
+                    
+                        <div className="navIcon">
+                            <Image src={nav} height="35px" width="36px" onClick={() => {setMenu(!menu); setClick(!clicked)}}/>
+                        </div>
+                        <div className="logoMob">
+                                <Link href="/">
+                                    <a>
+                                        NP Russia
+                                    </a>
+                                </Link>
+                        </div>
+                        <div className="searchMob">
+                                <Image src={searchMob} onClick={() => setClick(!clicked)} />
+                        </div>
+                </div>
+            :
+                <div className="mobileTopbar black">
+                    <div className="navIcon">
+                        <Image src={nav} height="35px" width="36px" onClick={() => {setMenu(!menu); setClick(!clicked)}}/>
+                    </div>
+                    <div className="logoMob">
+                            <Link href="/">
+                                <a>
+                                    NP Russia
+                                </a>
+                            </Link>
+                    </div>
+                    <div className="searchMob">
+                            <Image src={cross} onClick={() => setClick(!clicked)} />
+                    </div>
+                </div>
+            }
+            {menu?<Menu />:''}
             <div className="topbar">
                 <nav>
                     <div className="categories">
@@ -50,82 +93,120 @@ export default function TopMenu () {
                 </nav>
             </div>
         <style jsx>{`
-            .topbar {
-                z-index:2;
-                display: flex;
-                position: relative;
-                min-width: 100rem;
-                background-color: #ffffff;
-                min-height: 3rem;
-                align-items:center;
-                justify-content: center;
+            @media (min-width: 120px) { 
+                .topbar {
+                    visibility: hidden;
+                    position: absolute;
+                }
+                .mobileTopbar {
+                    position: relative;
+                    height: 60px;
+                    display: flex;
+                    justify-content: center;
+                    align-items:center;
+                }
+                .black {
+                    background-color: black;
+                }
+                .navIcon {
+                    float: left;
+                    margin: auto auto auto 1rem;
+                }
+                .logoMob {
+                    margin: auto;
+                    position: absolute;
+                    color: lightgrey;
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    text-shadow:
+                        3px  3px 0 #000,
+                        -1px -1px 0 #000,  
+                        1px -1px 0 #000,
+                        -1px  1px 0 #000,
+                        1px  1px 0 #000;
+                }
+                .searchMob {
+                    margin-right: 0.8rem;
+                }
+            } 
+            @media (min-width: 800px) {
+                .mobileTopbar {
+                    visibility: hidden;
+                    height: 0;
+                }
+                .topbar {
+                    visibility: visible;
+                    z-index:2;
+                    display: flex;
+                    position: relative;
+                    background-color: #ffffff;
+                    min-height: 3rem;
+                    align-items:center;
+                    justify-content: center;
+                }
+                nav {
+                    width: 100%;
+                    position: absolute;
+                    margin: auto;
+                    display: flex;
+                    align-items:center;
+                    justify-content: center;
+                }
+                .categories {
+                    display: flex;
+                    font-weight: bold;
+                    float: left;
+                }
+                .logo-box {
+                    position: relative;
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    margin: auto;
+                    margin-left: -0.75 rem;
+                    justify-content: center;
+                }
+                .right-side {
+                    height:3em;
+                    display: flex;
+                    position: relative;
+                }
+                .links {
+                    display: flex;
+                    height: 3rem;
+                    overflow: hidden;
+                }
+                .helper {
+                    position: relative;
+                    font-weight: bold;
+                    height: 3rem;
+                    width: 4rem;
+                    border-top: 3px solid #c31e1e;
+                    background-color: #d92121;
+                    font-size: .62rem;
+                    color: #ffffff;
+                    letter-spacing: .1rem;
+                    line-height: .93rem;
+                    text-transform: uppercase;
+                    text-align: center;
+                    padding-top: 0.5rem;
+                }
+                .helper:hover {
+                    overflow: visible;
+                    padding-top: 0.9rem;
+                    height: 3.4rem;
+                    transition-duration: .2s;
+                }
+                .searchBox {
+                    overflow:hidden;
+                    padding-right: 0px;
+                }
+                .search:hover {
+                    margin-top: -100%;
+                    cursor: pointer;
+                }
             }
-            nav {
-                position: absolute;
-                width: 80rem;
-                min-width: 400px;
-                margin: auto;
-                display: flex;
-                align-items:center;
-                justify-content: center;
-            }
-            .categories {
-                display: flex;
-                font-weight: bold;
-                float: left;
-            }
-            .logo-box {
-                position: relative;
-                font-size: 1.5rem;
-                font-weight: bold;
-                margin: auto;
-                align-items:center;
-                justify-content: center;
-            }
-            .logo {
-                margin-right: 1.5rem;
-                padding-left: 1.5rem;
-            }
-            .right-side {
-                height:3em;
-                display: flex;
-                position: relative;
-            }
-            .links {
-                display: flex;
-                height: 3rem;
-                overflow: hidden;
-            }
-            .helper {
-                position: relative;
-                font-weight: bold;
-                height: 3rem;
-                width: 4rem;
-                border-top: 3px solid #c31e1e;
-                background-color: #d92121;
-                font-size: .62rem;
-                color: #ffffff;
-                letter-spacing: .1rem;
-                line-height: .93rem;
-                text-transform: uppercase;
-                text-align: center;
-                padding-top: 0.5rem;
-            }
-            .helper:hover {
-                overflow: visible;
-                padding-top: 0.9rem;
-                height: 3.4rem;
-                transition-duration: .2s;
-            }
-            .searchBox {
-                overflow:hidden;
-                padding-right: 0px;
-            }
-            .search:hover {
-                margin-top: -100%;
-                cursor: pointer;
-            }
+            
         `}</style>
         </>
     )
-}   
+}

@@ -21,12 +21,23 @@ export default function menuButton ({link, text, img}) {
             </div>
 
             <style jsx>{`
-                .text {
-                    font-family: inherit;
-                    padding: 1rem 0 1rem 0  ;
-                    font-size: 1rem;
-                    margin: auto .75rem auto .75rem;
-                    text-align: center;
+                @media (min-width:120px) {
+                    .text {
+                        font-family: inherit;
+                        padding: 1rem 0 1rem 0  ;
+                        font-size: 0.5rem;
+                        margin: auto .75rem auto .75rem;
+                        text-align: center;
+                    }
+                }
+                @media (min-width:800px) {
+                    .text {
+                        font-family: inherit;
+                        padding: 1rem 0 1rem 0  ;
+                        font-size: 1rem;
+                        margin: auto .75rem auto .75rem;
+                        text-align: center;
+                    }
                 }
                 .text:hover {
                     transition-property: border, background-color, color;

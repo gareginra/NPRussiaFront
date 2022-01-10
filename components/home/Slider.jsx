@@ -11,6 +11,8 @@ const Slider = () => {
     const mainImageSrc = sliderData[selectedPic].url;
     const rightImageSrc = (selectedPic === sliderData.length-1)?sliderData[0].url:sliderData[selectedPic+1].url;
     const mainSlideData = {title: sliderData[selectedPic].title, description: sliderData[selectedPic].description};
+    const height = '1000vw';
+    const width = '1000vw';
     
     return (
         <>
@@ -19,8 +21,8 @@ const Slider = () => {
                     <Image
                         priority
                         src={leftImageSrc}
-                        height='600px'
-                        width='1000vw'
+                        height={height}
+                        width={width}
                         objectFit="cover"
                     />
                     <div className="shader" />
@@ -34,9 +36,9 @@ const Slider = () => {
                     <Image           
                         priority
                         src={mainImageSrc}
-                        height='600px'
-                        width='1000vw'
-                        objectFit="cover"
+                        height="1000vw"
+                        width={width}
+                        objectFit="contain"
                     />
                     <div className="mainSlideShader">
                         <div className="text">
@@ -49,8 +51,8 @@ const Slider = () => {
                     <Image
                             priority
                             src={rightImageSrc}
-                            height='1000%'
-                            width='1000vw'
+                            height={height}
+                            width={width}
                             objectFit="cover"
                     />
                     <div className="shader" />
@@ -62,30 +64,58 @@ const Slider = () => {
                 </div>
             </div>
             <style jsx>{`
-                .slider-background{
-                    display: flex;
-                    position: relative;
+                @media (min-width: 0px){
+                    .slide {
+                        visibility : hidden;
+                        width: 0;
+                    }
+                    .mainSlide {
+                        width: 100%;
+                        max-height: 400px;
+                    }
+                    .mainSlideShader {
+                        width: 100%;
+                    }
+                }
+                @media (min-width: 800px) {
+                    .left {
+                        float: left;
+                    }
+                    .right {
+                        margin-left: auto;
+                    }
+                    .slide {
+                        visibility: visible;
+                        width: 33.3333vw;
+                        height: inherit;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-bottom: 5px solid grey;
+                        overflow: hidden;
+                    }
+                    .mainSlide {
+                        width : 33.3333vw;
+                        max-height: none;
+                    }
+                    .mainSlideShader {
+                        width : 33.3333vw;
+                    }
+                }
+                .slider-background{ 
+                    display: flex; 
+                    position: relative; 
                     width: 100%;
-                    overflow: hidden;
-                    min-width: 1000px;
-                    height: 600px;
+                    overflow: hidden; 
+                    height: 40rem;
                 }
                 .mainSlide {
                     position: relative;
-                    width: 33.3333vw;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     border-bottom: 5px solid red;
-                    object-fit: cover;
-                }
-                .slide {
-                    width: 33.3333vw;
-                    height: inherit;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-bottom: 5px solid grey;
+                    overflow: hidden;
                 }
                 .shader {
                     position: absolute;
@@ -93,13 +123,7 @@ const Slider = () => {
                     width: inherit;
                     height: inherit;
                     opacity: 80%;
-                    margin-top: -5px;
-                }
-                .left {
-                    float: left;
-                }
-                .right {
-                    margin-left: auto;
+                    margin-top: -5px; // для видимости border
                 }
                 .arrowBox {
                     position: absolute;
@@ -126,7 +150,6 @@ const Slider = () => {
                 .mainSlideShader {
                     position: absolute;
                     bottom: 0px;
-                    width: 33.3333vw;
                     display: block;
                     font-family: 'ConquerorText';
                     line-height: 30px;
@@ -150,12 +173,16 @@ const Slider = () => {
                 }
                 .description {
                     position: absolute;
-                    font-size: 21px;
+                    font-size: 1.5rem;
+                    color: lightgrey;
                     overflow: hidden;
                     transition: all 2s linear;
-                }
-                .description:hover {
-                    overflow: visible;
+                    text-shadow:
+                        3px  3px 0 #000,
+                        -1px -1px 0 #000,  
+                        1px -1px 0 #000,
+                        -1px  1px 0 #000,
+                        1px  1px 0 #000;
                 }
             `}</style>
             <div dangerouslySetInnerHTML={{
