@@ -33,6 +33,20 @@ const Slider = () => {
                     </div>
                 </div>
                 <div className="mainSlide">
+                    <div className="mobArrows">
+
+                        <div className="arrowBox left mob">
+                            <div className="leftArrow arrow" onClick={() => selectedPic?setSelectedPic(selectedPic-1):setSelectedPic(selectedPic = sliderData.length-1)}>
+                                <Image src={arrows} objectFit="fill"/>
+                            </div>
+                        </div>
+
+                        <div className="arrowBox right mob">
+                            <div className="rightArrow arrow" onClick={() => (selectedPic===sliderData.length-1)?setSelectedPic(selectedPic = 0):setSelectedPic(selectedPic+1)}>
+                                <Image src={arrows} objectFit="fill"/>
+                            </div>
+                        </div>
+                    </div>
                     <Image           
                         priority
                         src={mainImageSrc}
@@ -76,13 +90,29 @@ const Slider = () => {
                     .mainSlideShader {
                         width: 100%;
                     }
-                }
-                @media (min-width: 800px) {
-                    .left {
-                        float: left;
+                    .mobArrows{
+                        position: absolute;
+                        width: 100%;
+                        display: flex;
+                        height: 100%;
+                        align-items: center;
+                    }
+                    .arrowBox {
+                        height: 100%;
+                        position: relative;
                     }
                     .right {
-                        margin-left: auto;
+                        right: 0;
+                    }
+                    .mob {
+                        background-color: black;
+                        opacity: 50%;
+                    }
+                }
+                @media (min-width: 800px) {
+                    .mobArrows {
+                        visibility: hidden;
+                        height: 0;
                     }
                     .slide {
                         visibility: visible;
@@ -102,12 +132,18 @@ const Slider = () => {
                         width : 33.3333vw;
                     }
                 }
+                .left {
+                    float: left;
+                }
+                .right {
+                    margin-left: auto;
+                }
                 .slider-background{ 
                     display: flex; 
                     position: relative; 
                     width: 100%;
                     overflow: hidden; 
-                    height: 40rem;
+                    height: 30rem;
                 }
                 .mainSlide {
                     position: relative;
@@ -131,7 +167,7 @@ const Slider = () => {
                     height: 70px;
                     width: 70px;
                     overflow: hidden;
-                    display:block;
+                    border-radius: 9999px;
                 }
                 .leftArrow {
                     width: 200%;
