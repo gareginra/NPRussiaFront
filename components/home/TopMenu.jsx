@@ -115,7 +115,7 @@ export default function TopMenu () {
                 .logoMob {
                     margin: auto;
                     position: absolute;
-                    color: lightgrey;
+                    color: white;
                     font-size: 1.5rem;
                     font-weight: bold;
                     text-shadow:
@@ -124,6 +124,7 @@ export default function TopMenu () {
                         1px -1px 0 #000,
                         -1px  1px 0 #000,
                         1px  1px 0 #000;
+                        padding-bottom: 1px;
                 }
                 .searchMob {
                     margin-right: 0.8rem;
@@ -163,7 +164,13 @@ export default function TopMenu () {
                     font-weight: bold;
                     margin: auto;
                     margin-left: -0.75 rem;
-                    justify-content: center;
+                    color: white;
+                    text-shadow:
+                        3px  3px 0 #000,
+                        -1px -1px 0 #000,  
+                        1px -1px 0 #000,
+                        -1px  1px 0 #000,
+                        1px  1px 0 #000;
                 }
                 .right-side {
                     height:3em;

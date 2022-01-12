@@ -25,11 +25,13 @@ const Slider = () => {
                         width={width}
                         objectFit="cover"
                     />
-                    <div className="shader" />
-                    <div className="arrowBox">
-                        <div className="leftArrow arrow" onClick={() => selectedPic?setSelectedPic(selectedPic-1):setSelectedPic(selectedPic = sliderData.length-1)}>
-                            <Image src={arrows} objectFit="fill"/>
+                    <div className="shader">
+                        <div className="arrowBox">
+                            <div className="leftArrow arrow" onClick={() => selectedPic?setSelectedPic(selectedPic-1):setSelectedPic(selectedPic = sliderData.length-1)}>
+                                <Image src={arrows} objectFit="fill"/>
+                            </div>
                         </div>
+                        <div className="actualShader" />
                     </div>
                 </div>
                 <div className="mainSlide">
@@ -69,11 +71,13 @@ const Slider = () => {
                             width={width}
                             objectFit="cover"
                     />
-                    <div className="shader" />
-                    <div className="arrowBox">
-                        <div className="rightArrow arrow" onClick={() => (selectedPic===sliderData.length-1)?setSelectedPic(selectedPic = 0):setSelectedPic(selectedPic+1)}>
-                            <Image src={arrows} objectFit="fill"/>
+                    <div className="shader">
+                        <div className="arrowBox">
+                            <div className="rightArrow arrow" onClick={() => (selectedPic===sliderData.length-1)?setSelectedPic(selectedPic = 0):setSelectedPic(selectedPic+1)}>
+                                <Image src={arrows} objectFit="fill"/>
+                            </div>
                         </div>
+                        <div className="actualShader" />
                     </div>
                 </div>
             </div>
@@ -121,7 +125,6 @@ const Slider = () => {
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        border-bottom: 5px solid grey;
                         overflow: hidden;
                     }
                     .mainSlide {
@@ -142,8 +145,9 @@ const Slider = () => {
                     display: flex; 
                     position: relative; 
                     width: 100%;
-                    overflow: hidden; 
-                    height: 30rem;
+                    overflow: hidden;
+                    max-height: 20rem;
+                    height: 100%;
                 }
                 .mainSlide {
                     position: relative;
@@ -154,15 +158,24 @@ const Slider = () => {
                     overflow: hidden;
                 }
                 .shader {
+                    top:0;
                     position: absolute;
-                    background-color:black;
                     width: inherit;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-bottom: 5px solid grey;
                     height: inherit;
+                }
+                .actualShader {
+                    width: inherit;
+                    position: absolute;
+                    height: inherit;
+                    background-color: black;
                     opacity: 80%;
-                    margin-top: -5px; // для видимости border
                 }
                 .arrowBox {
-                    position: absolute;
+                    position: relative;
                     z-index:2;
                     height: 70px;
                     width: 70px;
