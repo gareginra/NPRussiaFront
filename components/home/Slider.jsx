@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import sliderData from "/data/files/slider-images.js";
 import arrows from "/data/files/images/banner-arrows.png";
-let descriptionBar = 0;
 
 const Slider = () => {
     const [selectedPic, setSelectedPic] = useState(0);
@@ -13,7 +12,12 @@ const Slider = () => {
     const mainSlideData = {title: sliderData[selectedPic].title, description: sliderData[selectedPic].description};
     const height = '1000vw';
     const width = '1000vw';
-    
+    function toTheLeft(i) {
+        i?setSelectedPic(i-1):setSelectedPic(i = sliderData.length-1)
+    }
+    function toTheRight(i) {
+        i===sliderData.length-1?setSelectedPic(i = 0):setSelectedPic(i+1)
+    }
     return (
         <>
             <div className="slider-background">
@@ -27,8 +31,8 @@ const Slider = () => {
                     />
                     <div className="shader">
                         <div className="arrowBox">
-                            <div className="leftArrow arrow" onClick={() => selectedPic?setSelectedPic(selectedPic-1):setSelectedPic(selectedPic = sliderData.length-1)}>
-                                <Image src={arrows} objectFit="fill"/>
+                            <div className="leftArrow arrow" onClick={() => toTheLeft(selectedPic)}>
+                                <Image src={arrows} height="300%" width="200%" objectFit="fill"/>
                             </div>
                         </div>
                         <div className="actualShader" />
@@ -36,23 +40,24 @@ const Slider = () => {
                 </div>
                 <div className="mainSlide">
                     <div className="mobArrows">
-
-                        <div className="arrowBox left mob">
-                            <div className="leftArrow arrow" onClick={() => selectedPic?setSelectedPic(selectedPic-1):setSelectedPic(selectedPic = sliderData.length-1)}>
-                                <Image src={arrows} objectFit="fill"/>
+                        <div className="arrowBox left">
+                            <div className="mobArrowShader"/>
+                            <div className="leftArrow arrow" onClick={() => toTheLeft(selectedPic)}>
+                                <Image src={arrows} height="300%" width="200%" objectFit="fill"/>
                             </div>
                         </div>
 
-                        <div className="arrowBox right mob">
-                            <div className="rightArrow arrow" onClick={() => (selectedPic===sliderData.length-1)?setSelectedPic(selectedPic = 0):setSelectedPic(selectedPic+1)}>
-                                <Image src={arrows} objectFit="fill"/>
+                        <div className="arrowBox right">
+                            <div className="mobArrowShader"/>
+                            <div className="rightArrow arrow" onClick={() => toTheRight(selectedPic)}>
+                                <Image src={arrows} height="300%" width="200%"  objectFit="fill"/>
                             </div>
                         </div>
                     </div>
                     <Image           
                         priority
                         src={mainImageSrc}
-                        height="1000vw"
+                        height={height}
                         width={width}
                         objectFit="contain"
                     />
@@ -73,8 +78,8 @@ const Slider = () => {
                     />
                     <div className="shader">
                         <div className="arrowBox">
-                            <div className="rightArrow arrow" onClick={() => (selectedPic===sliderData.length-1)?setSelectedPic(selectedPic = 0):setSelectedPic(selectedPic+1)}>
-                                <Image src={arrows} objectFit="fill"/>
+                            <div className="rightArrow arrow" onClick={() => toTheRight(selectedPic)}>
+                                <Image src={arrows} height="300%" width="200%" objectFit="fill"/>
                             </div>
                         </div>
                         <div className="actualShader" />
@@ -102,13 +107,20 @@ const Slider = () => {
                         align-items: center;
                     }
                     .arrowBox {
-                        height: 100%;
                         position: relative;
+                        height: 3rem;
+                        width: 3rem;
                     }
                     .right {
-                        right: 0;
+                        right: .5rem;
                     }
-                    .mob {
+                    .left {
+                        left: .5rem;
+                    }
+                    .mobArrowShader {
+                        position: absolute;
+                        height: inherit;
+                        width: inherit;
                         background-color: black;
                         opacity: 50%;
                     }
@@ -117,6 +129,7 @@ const Slider = () => {
                     .mobArrows {
                         visibility: hidden;
                         height: 0;
+                        width: 3rem;
                     }
                     .slide {
                         visibility: visible;
@@ -133,6 +146,10 @@ const Slider = () => {
                     }
                     .mainSlideShader {
                         width : 33.3333vw;
+                    }
+                    .arrowBox {
+                        height: 4rem;
+                        width: 4rem;
                     }
                 }
                 .left {
@@ -175,21 +192,14 @@ const Slider = () => {
                     opacity: 80%;
                 }
                 .arrowBox {
-                    position: relative;
                     z-index:2;
-                    height: 70px;
-                    width: 70px;
                     overflow: hidden;
                     border-radius: 9999px;
                 }
                 .leftArrow {
-                    width: 200%;
-                    height: 300%;
+                    margin-right: -100%;
                 }
                 .rightArrow {
-                    width: 200%;
-                    height: 300%;
-                    transition-property: all .2s;
                     margin-left: -100%;
                 }
                 .arrow:hover {

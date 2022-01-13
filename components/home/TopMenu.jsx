@@ -17,13 +17,25 @@ import { useState } from "react";
 export default function TopMenu () {
     const [clicked, setClick] = useState(false);
     const [menu, setMenu] = useState(false);
+    const menuToggle = () => {
+        setMenu(!menu)
+        setClick(!clicked)
+    }
+    const mobSearchToggle = () => {
+        setClick(!clicked)
+    }
+    const backToWhiteMenu = () => {
+        setClick(clicked = false);
+        setMenu(menu = false);
+        //setSearch(search = false) later
+    }
     return (
         <>
             {!clicked ?
                 <div className="mobileTopbar">
                     
                         <div className="navIcon">
-                            <Image src={nav} height="35px" width="36px" onClick={() => {setMenu(!menu); setClick(!clicked)}}/>
+                            <Image src={nav} height="35px" width="36px" onClick={() => menuToggle()}/>
                         </div>
                         <div className="logoMob">
                                 <Link href="/">
@@ -33,13 +45,13 @@ export default function TopMenu () {
                                 </Link>
                         </div>
                         <div className="searchMob">
-                                <Image src={searchMob} onClick={() => setClick(!clicked)} />
+                                <Image src={searchMob} onClick={() => mobSearchToggle()} />
                         </div>
                 </div>
             :
                 <div className="mobileTopbar black">
                     <div className="navIcon">
-                        <Image src={nav} height="35px" width="36px" onClick={() => {setMenu(!menu); setClick(!clicked)}}/>
+                        <Image src={nav} height="35px" width="36px" onClick={() => menuToggle()}/>
                     </div>
                     <div className="logoMob">
                             <Link href="/">
@@ -49,7 +61,7 @@ export default function TopMenu () {
                             </Link>
                     </div>
                     <div className="searchMob">
-                            <Image src={cross} onClick={() => setClick(!clicked)} />
+                            <Image src={cross} onClick={() => backToWhiteMenu()} />
                     </div>
                 </div>
             }
