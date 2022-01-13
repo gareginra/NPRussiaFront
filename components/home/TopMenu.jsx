@@ -162,7 +162,7 @@ export default function TopMenu () {
                     position: absolute;
                     margin: auto;
                     display: flex;
-                    align-items:center;
+                    align-items: center;
                     justify-content: center;
                 }
                 .categories {
