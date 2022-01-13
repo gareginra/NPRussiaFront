@@ -158,7 +158,7 @@ export default function TopMenu () {
                     justify-content: center;
                 }
                 nav {
-                    width: 100%;
+                    min-width: 100%;
                     position: absolute;
                     margin: auto;
                     display: flex;
@@ -224,7 +224,16 @@ export default function TopMenu () {
                     cursor: pointer;
                 }
             }
-            
+            @media (min-width: 1400px) {
+                nav {
+                    min-width: 75%;
+                }
+            }
+            @media (min-width: 2000px) {
+                nav {
+                    min-width: 60%;
+                }
+            }
         `}</style>
         </>
     )

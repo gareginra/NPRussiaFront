@@ -27,7 +27,9 @@ export default function Home() {
           @media (min-width: 800px) {
             .Menu {
               visibility: visible;
-              position: relative;
+              position: -webkit-sticky;
+              position: sticky;
+              top:0;
             }
           }
         `}
