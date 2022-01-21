@@ -24,7 +24,7 @@ export default function menuButton ({link, text, img}) {
                 @media (min-width:120px) {
                     .text {
                         font-family: inherit;
-                        padding: 1rem 0 1rem 0  ;
+                        padding: 1rem 0 1rem 0;
                         font-size: 0.5rem;
                         margin: auto .75rem auto .75rem;
                         text-align: center;
