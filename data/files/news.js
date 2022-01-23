@@ -1,7 +1,7 @@
 export default [
     {
         title: "News 1",
-        date: "2022-01-21",
+        date: "2022-01-23 3:34:5",
         link: "/news_1"
     },
     {

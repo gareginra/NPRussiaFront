@@ -2,7 +2,7 @@ import Link from "next/link";
 import newsData from "/data/files/news";
 let months = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
 
-export default function NewsPreview ({id}) {
+const NewsPreview = ({id}) => {
     id = id%newsData.length;
     if (id < 0) {
         id = newsData.length - id;
@@ -10,17 +10,18 @@ export default function NewsPreview ({id}) {
     if (id >= newsData.length) {
         id = id - newsData.length;
     }
-    const date = new Date(newsData[id].date).getDate().toString() + " " + months[new Date(newsData[id].date).getMonth()];
-    const hours = new Date(newsData[id].date).getHours().toString()<10?"0"+new Date(newsData[id].date).getHours().toString():new Date(newsData[id].date).getHours().toString();
-    const minutes = new Date(newsData[id].date).getMinutes().toString()<10?"0"+new Date(newsData[id].date).getMinutes().toString():new Date(newsData[id].date).getMinutes().toString();
-    const time = hours + ":" + minutes;
-    const link = newsData[id].link;
-    const title = newsData[id].title;
+    const date = () => {
+        const dayMonth = new Date().getDate() == new Date(newsData[id].date).getDate() ? "" : new Date(newsData[id].date).getDate() + " " + months[new Date(newsData[id].date).getMonth()] + " ";
+        const hours = new Date(newsData[id].date).getHours() < 10 ? "0" + new Date(newsData[id].date).getHours() : new Date(newsData[id].date).getHours();
+        const minutes = new Date(newsData[id].date).getMinutes() < 10? "0" + new Date(newsData[id].date).getMinutes() : new Date(newsData[id].date).getMinutes();
+        const time = hours + ":" + minutes;
+        return dayMonth + time;
+    }
     return (
         <>
-            <p className="date">{new Date().getDate() == new Date(newsData[id].date).getDate() ? "" : date + " "}{time}</p>
-            <Link href={"/news"+link}>
-                <p className="title"><a>{title}</a></p>
+            <p className="date">{date()}</p>
+            <Link href={"/news"+newsData[id].link}>
+                <p className="title"><a>{newsData[id].title}</a></p>
             </Link>
             <style jsx>
                 {`
@@ -45,3 +46,4 @@ export default function NewsPreview ({id}) {
         </>
     )
 }
+export default NewsPreview;

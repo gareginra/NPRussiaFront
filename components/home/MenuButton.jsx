@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/dist/client/image";
 
-export default function menuButton ({link, text, img}) {
+const menuButton = ({link, text, img}) => {
     return (
         <div>
             <div className="button">
@@ -61,3 +61,4 @@ export default function menuButton ({link, text, img}) {
         
     )
 }
+export default menuButton;

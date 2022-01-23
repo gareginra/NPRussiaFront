@@ -5,12 +5,12 @@ import Link from "next/link"
 import newsData from "/data/files/news";
 import NewsPreview from "./NewsPreview";
 const News = () => {
-    const [firstID, setID] = useState(0);
+    const [newsID, setNewsID] = useState(0);
     const scrollLeft = (i) => {
-        firstID ? setID(firstID-i) : setID(newsData.length-i);
+        newsID ? setNewsID(newsID-i) : setNewsID(newsData.length-i);
     };
     const scrollRight = (i) => {
-        firstID == newsData.length-i ? setID(0) : setID(firstID+i)
+        newsID == newsData.length-i ? setNewsID(0) : setNewsID(newsID+i)
     }
     return (
         <div className="news-background">
@@ -36,39 +36,39 @@ const News = () => {
                     </div>
                 </div>
                 <div className="carousel mob">
-                    <div className="start" style={{marginLeft: 3 +'rem'}}>
-                        <NewsPreview id={firstID}/>
+                    <div className="start">
+                        <NewsPreview id={newsID}/>
                     </div>
                 </div>
                 <div className="carousel four">
                     <div className="news-box start">
-                        <NewsPreview id={firstID}/>
+                        <NewsPreview id={newsID}/>
                     </div>
                     <div className="news-box">
-                        <NewsPreview id={firstID+1}/>
+                        <NewsPreview id={newsID+1}/>
                     </div>
                     <div className="news-box">
-                        <NewsPreview id={firstID+2}/>
+                        <NewsPreview id={newsID+2}/>
                     </div>
                     <div className="news-box">
-                        <NewsPreview id={firstID+3}/>
+                        <NewsPreview id={newsID+3}/>
                     </div>
                 </div>
                 <div className="carousel five">
                     <div className="news-box start">
-                        <NewsPreview id={firstID}/>
+                        <NewsPreview id={newsID}/>
                     </div>
                     <div className="news-box">
-                        <NewsPreview id={firstID+1}/>
+                        <NewsPreview id={newsID+1}/>
                     </div>
                     <div className="news-box">
-                        <NewsPreview id={firstID+2}/>
+                        <NewsPreview id={newsID+2}/>
                     </div>
                     <div className="news-box">
-                        <NewsPreview id={firstID+3}/>
+                        <NewsPreview id={newsID+3}/>
                     </div>
                     <div className="news-box">
-                        <NewsPreview id={firstID+4}/>
+                        <NewsPreview id={newsID+4}/>
                     </div>
                 </div>
             </div>
@@ -102,6 +102,9 @@ const News = () => {
                     }
                     .container {
                         width: 100vw;
+                    }
+                    .carousel {
+                        margin-left: 3rem;
                     }
                 }
                 @media (min-width: 800px) {
@@ -139,6 +142,9 @@ const News = () => {
                     }
                     .container {
                         width: 90%;
+                    }
+                    .carousel {
+                        margin: 0;
                     }
                 }
                 @media (min-width: 1400px) {

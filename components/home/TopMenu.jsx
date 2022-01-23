@@ -14,7 +14,7 @@ import nav from "/data/files/images/nav.png";
 import searchMob from "/data/files/images/searchMob.png";
 import cross from "/data/files/images/header_close.png";
 import { useState } from "react";
-export default function TopMenu () {
+const TopMenu = () => {
     const [clicked, setClick] = useState(false);
     const [menu, setMenu] = useState(false);
     const menuToggle = () => {
@@ -253,3 +253,4 @@ export default function TopMenu () {
         </>
     )
 }
+export default TopMenu;
