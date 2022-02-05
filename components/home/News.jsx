@@ -1,6 +1,6 @@
 "use strict";
 
-import React, { Component, useState } from "react";
+import React, {useState } from "react";
 import Link from "next/link"
 import newsData from "/data/files/news";
 import NewsPreview from "./NewsPreview";
@@ -78,6 +78,10 @@ const News = () => {
                         visibility: hidden;
                         position: absolute;
                     }
+                    .four div {
+                        visibility: hidden;
+                        position: absolute;
+                    }
                     .five {
                         visibility: hidden;
                         position: absolute;
@@ -116,6 +120,10 @@ const News = () => {
                         position: relative;
                         visibility: visible;
                     }
+                    .four div {
+                        position: relative;
+                        visibility: visible;
+                    }
                     .five {
                         visibility: hidden;
                         position: absolute;
@@ -151,6 +159,10 @@ const News = () => {
                     .four {
                         position: absolute;
                         visibility: hidden;
+                    }
+                    .four div {
+                        visibility: hidden;
+                        position: absolute;
                     }
                     .five {
                         position: relative;

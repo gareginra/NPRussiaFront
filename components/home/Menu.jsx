@@ -65,11 +65,10 @@ const Menu = () => {
                         justify-content: center;
                         flex-direction: row;
                         flex-wrap: wrap;
-
                         align-items: center;
                     }
                     .menu li{
-                        float:left;
+                        float: left;
                         border: none;
                         margin: 1rem;
                         line-height: 1rem;
