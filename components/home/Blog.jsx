@@ -3,7 +3,7 @@
 import React, {useState } from "react";
 import MostRead from "./MostRead";
 import Post from "./Post";
-const Blog = () => {
+const Blog = (arr) => {
     return (
         <div className="blog-background">
             <div className="list">
@@ -11,7 +11,7 @@ const Blog = () => {
                 <div className="mob">
                     <Post id={1} mob/>
                 </div>
-                <div className="first-half">
+                <div className="first half">
                     <div className="two post-list">
                         <div className="row">
                             <Post id={5} />
@@ -39,6 +39,34 @@ const Blog = () => {
                 <div className="most-read">
                     <MostRead />
                 </div>
+                <div className="half second">
+                    <div className="two post-list">
+                        <div className="row">
+                            <Post id={5} />
+                            <Post id={6} />
+                            <Post id={6} />
+                        </div>
+                        <div className="row">
+                            <Post id={7} />
+                            <Post id={8} />
+                            <Post id={8} />
+                        </div>
+                    </div>
+                    <div className="three post-list">
+                        <div className="row">
+                            <Post id={0} />
+                            <Post id={5} />
+                            <Post id={1} />
+                            <Post id={1} />
+                        </div>
+                        <div className="row">
+                            <Post id={4} />
+                            <Post id={2} />
+                            <Post id={2} />
+                            <Post id={3} />
+                        </div>
+                    </div>
+                </div>
             </div>
             <style jsx>{`
                 @media (min-width:0px) {
@@ -46,7 +74,7 @@ const Blog = () => {
                         visibility: visible;
                         position: relative;
                     }
-                    .first-half div {
+                    .half div {
                         visibility: hidden;
                         position: absolute;
                     }
@@ -57,7 +85,7 @@ const Blog = () => {
                         position: absolute;
                         display: none;
                     }
-                    .first-half div {
+                    .half div {
                         visibility: visible;
                         position: relative;
                     }
@@ -80,7 +108,10 @@ const Blog = () => {
                         display: flex;
                         justify-content: space-between;
                     }
-                    .first-half {
+                    .second .row{
+                        gap: 1rem;
+                    }
+                    .half {
                         display: flex;
                         justify-content: center;
                     }
@@ -92,9 +123,12 @@ const Blog = () => {
                     .gray-bg div {
                         visibility: hidden;
                     }
+                    .second {
+                        margin-top: 20rem;
+                    }
                 }
                 @media (min-width: 850px) {
-                    .row {
+                    .first .row {
                         gap: 1rem;
                     }
                     .ad {
@@ -130,6 +164,9 @@ const Blog = () => {
                     width: 100%;
                     display: flex;
                     justify-content: center;
+                }
+                .most-read {
+                    height:100px;
                 }
             `}</style>
         </div>

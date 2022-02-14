@@ -2,20 +2,20 @@ import views from "/public/images/views.png";
 import Image from "next/image";
 import data from "/data/files/posts.js";
 
-const MostReadPost = ({post}) => {
+const MostReadPost = ({id}) => {
     const arr = data.slice().sort((a,b) => new Date(a.views) - new Date(b.views)).reverse();
-    post = post%arr.length;
-    if (post < 0) {
-        post = arr.length - post;
+    id = id%arr.length;
+    if (id < 0) {
+        id = arr.length - id;
     }
-    if (post >= arr.length) {
-        post = post - arr.length;
+    if (id >= arr.length) {
+        id = id - arr.length;
     }
-    post = arr[post]
+    const post = arr[id]
     
     return (
         <div className="mrp-background">
-            <div className="mrp-number">{arr.indexOf(post)+1}</div>
+            <div className="mrp-number">{id+1}</div>
             <div className="mrp-image">
                 <Image src={post.image} width="100%" height="100%" />
             </div>
@@ -93,4 +93,5 @@ const MostReadPost = ({post}) => {
 
     )
 }
+
 export default MostReadPost;

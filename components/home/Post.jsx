@@ -22,16 +22,16 @@ const Post = ({id, mob}) => {
             </div>
             <div className="date">
                 {dateProcessor(data[id].date)}
-                    <Link href={data[id].title}  /* href to be changed */>
-                        <a>
+                    {/* <Link href={data[id].title} >
+                        <a> */}
                             <div className="views">
                                 <div className="image">
                                     <Image src={views} />
                                 </div>
                                 <div className="views-count">{data[id].views}</div>
                             </div>
-                        </a>
-                    </Link>
+                        {/* </a>
+                    </Link> */}
             </div>
             <style jsx>{`
                 .post-background {
@@ -104,16 +104,16 @@ const Post = ({id, mob}) => {
             
             <div className="date">
                 {dateProcessor(data[id].date)}
-                    <Link href={data[id].title}  /* href to be changed */>
-                        <a>
+                    {/* <Link href={data[id].title} >
+                        <a> */}
                             <div className="views">
                                 <div className="image">
                                     <Image src={views} />
                                 </div>
                                 <div className="views-count">{data[id].views}</div>
                             </div>
-                        </a>
-                    </Link>
+                        {/* </a>
+                    </Link> */}
             </div>
             <style jsx>{`
                 @media (min-width: 800px) {

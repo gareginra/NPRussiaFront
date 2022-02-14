@@ -1,19 +1,14 @@
-import { useState } from "react/cjs/react.development";
+import { useState, useEffect } from "react/cjs/react.development";
 import MostReadPost from "./MostReadPost";
 import data from "/data/files/posts.js";
-
 const MostRead = () => {
     const arr = data.slice().sort((a,b) => new Date(a.views) - new Date(b.views)).reverse();
     const [width, setWidth] = useState(0);
     const [mrID, setMRID] = useState(0);
-    if (typeof window !== "undefined") {
-        setInterval(()=>{
-            if (width !== window.document.getElementsByClassName("most-read")[0].offsetWidth) {
-                width = window.document.getElementsByClassName("most-read")[0].offsetWidth;
-                setWidth(width)
-            }
-        }, 100)
-    }
+    useEffect(() => setInterval(()=>{
+        setWidth(window.document.getElementsByClassName("most-read")[0].offsetWidth)
+}, 100), [])
+    
     const scrollLeft = (i) => {
         mrID ? setMRID(mrID-i) : setMRID(arr.length-i);
     };
@@ -39,19 +34,19 @@ const MostRead = () => {
                         </div>
                     </div>
                     <div className="mr-bottom mob">
-                        <MostReadPost post={mrID} />
-                        <MostReadPost post={mrID+1} />
+                        <MostReadPost id={mrID} />
+                        <MostReadPost id={mrID+1} />
                     </div>
                     <div className="mr-bottom mr-three">
-                        <MostReadPost post={mrID} />
-                        <MostReadPost post={mrID+1} />
-                        <MostReadPost post={mrID+2} />
+                        <MostReadPost id={mrID} />
+                        <MostReadPost id={mrID+1} />
+                        <MostReadPost id={mrID+2} />
                     </div>
                     <div className="mr-bottom mr-four">
-                        <MostReadPost post={mrID} />
-                        <MostReadPost post={mrID+1} />
-                        <MostReadPost post={mrID+2} />
-                        <MostReadPost post={mrID+3} />
+                        <MostReadPost id={mrID} />
+                        <MostReadPost id={mrID+1} />
+                        <MostReadPost id={mrID+2} />
+                        <MostReadPost id={mrID+3} />
                     </div>
                 </div>
             <style jsx>{`
@@ -68,6 +63,12 @@ const MostRead = () => {
                         visibility: visible;
                         position: relative;
                     }
+                    .title {
+                        margin-left: 1rem;
+                    }
+                    .arrows {
+                        margin-right: 1rem;
+                    }
                 }
                 @media (min-width: 800px) {              
                     .mr-four {
@@ -81,6 +82,12 @@ const MostRead = () => {
                     .mob {
                         visibility: hidden;
                         position: absolute;
+                    }
+                    .title {
+                        margin: 0;
+                    }
+                    .arrows {
+                        margin-right: 0;
                     }
                 }
                 @media (min-width: 1400px) {              
@@ -149,4 +156,5 @@ const MostRead = () => {
         </div>:null
     )
 }
+
 export default MostRead;
