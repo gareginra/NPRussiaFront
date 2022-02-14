@@ -5,7 +5,7 @@ import data from "/data/files/posts.js";
 import Link from "next/link";
 import Image from "next/image";
 import dateProcessor from "../../lib/dateProcessor";
-import views from "/public/images/views.png"
+import views from "/public/images/views.png";
 const Post = ({id, mob}) => {
     const imgSrc = data[id].image;
     return ( mob ?
@@ -147,6 +147,7 @@ const Post = ({id, mob}) => {
                         font-size: 2rem;
                         font-weight: bold;
                         color: #1a1a1a;
+                        letter-spacing: 1px;
                         cursor: pointer;
                         transition: all .2s;
                     }
@@ -180,6 +181,7 @@ const Post = ({id, mob}) => {
                     }
                     .views-count {
                         margin-left: .5rem;
+                        margin-top: .1rem;
                     }
                     .views-count:hover {
                         color: #d92121;

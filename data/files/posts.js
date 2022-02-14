@@ -155,7 +155,15 @@ export default [
         title: "Вот и пришел конец козленку",
         description: "«Дягилев+» 2021",
         image: "/images/blog/detailed_picture (19).jpg",
-        date: "2022-01-25",
+        date: "2022-01-17",
+        category: "Академическая музыка",
+        views: 5250
+    },
+    {
+        title: "Вот и пришел конец козленку",
+        description: "«Дягилев+» 2021",
+        image: "/images/blog/detailed_picture (19).jpg",
+        date: "2022-02-3",
         category: "Академическая музыка",
         views: 5250
     },

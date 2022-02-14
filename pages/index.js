@@ -22,8 +22,7 @@ export default function Home() {
       <div className="news-wrap">
           <News />
       </div>
-      <Blog />  
-      <div className='test'></div>
+      <Blog />
         <style jsx>{`
           @media (min-width: 0px){
             .Menu {
@@ -40,9 +39,6 @@ export default function Home() {
               height: auto;
               top: 0;
               z-index:2;
-            }
-            .test {
-              height: 100rem;
             }
           }
           .news-wrap {

@@ -73,7 +73,7 @@ const News = () => {
                 </div>
             </div>
             <style jsx>{`
-                @media (min-width: 0px) {                    
+                @media (min-width: 0px) {              
                     .four {
                         visibility: hidden;
                         position: absolute;
