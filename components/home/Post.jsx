@@ -10,7 +10,7 @@ const Post = ({id, mob}) => {
     const imgSrc = data[id].image;
     return ( mob ?
         <div className="post-background">
-                <Image src={imgSrc} height="1000vh" width="1000vw" />
+            <Image priority src={imgSrc} height="1000vh" width="1000vw" />
             <div className="category">
                 <p>{data[id].category}</p>
             </div>
@@ -22,16 +22,16 @@ const Post = ({id, mob}) => {
             </div>
             <div className="date">
                 {dateProcessor(data[id].date)}
-                    {/* <Link href={data[id].title} >
-                        <a> */}
+                    <Link href={data[id].title}  /* href to be changed */>
+                        <a>
                             <div className="views">
                                 <div className="image">
                                     <Image src={views} />
                                 </div>
                                 <div className="views-count">{data[id].views}</div>
                             </div>
-                        {/* </a>
-                    </Link> */}
+                        </a>
+                    </Link>
             </div>
             <style jsx>{`
                 .post-background {
@@ -90,7 +90,7 @@ const Post = ({id, mob}) => {
         :
         <div className="post-background">
             <div className="pic">
-                <Image src={imgSrc} height="1000vh" width="1000vw" />
+                <Image priority src={imgSrc} height="1000vh" width="1000vw" />
             </div>
             <div className="category">
                 <p>{data[id].category}</p>
