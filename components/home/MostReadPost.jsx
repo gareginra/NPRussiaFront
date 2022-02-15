@@ -76,7 +76,6 @@ const MostReadPost = ({id}) => {
                     text-transform: uppercase;
                 }
                 .views-image {
-                    height: 50%;
                     max-height: .9rem;
                     margin-top: .2rem;
                     overflow: hidden;

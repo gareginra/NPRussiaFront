@@ -173,8 +173,6 @@ const Post = ({id, mob}) => {
                         margin-left: 2rem;
                     }
                     .image {
-                        width: 100%;
-                        height: 50%;
                         max-height: .9rem;
                         margin-top: .1rem;
                         overflow: hidden;

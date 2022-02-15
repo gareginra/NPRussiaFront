@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import MostReadPost from "./MostReadPost";
 import data from "/data/files/posts.js";
 const MostRead = () => {
@@ -6,7 +6,10 @@ const MostRead = () => {
     const [width, setWidth] = useState(0);
     const [mrID, setMRID] = useState(0);
     useEffect(() => setInterval(()=>{
-        setWidth(window.document.getElementsByClassName("most-read")[0].offsetWidth)
+        if (width !== window.document.getElementsByClassName("most-read")[0].offsetWidth) {
+            width = window.document.getElementsByClassName("most-read")[0].offsetWidth;
+            setWidth(width)
+        }
     }, 100), [])
     const scrollLeft = (i) => {
         mrID ? setMRID(mrID-i) : setMRID(arr.length-i);
@@ -14,7 +17,7 @@ const MostRead = () => {
     const scrollRight = (i) => {
         mrID == arr.length-i ? setMRID(0) : setMRID(mrID+i)
     }
-    return(width?
+    return(
         <div className="mr-background">
                 <div className="mr-carousel">
                     <div className="mr-top">
@@ -152,7 +155,7 @@ const MostRead = () => {
                     cursor: pointer;
                 }
             `}</style>
-        </div>:null
+        </div>
     )
 }
 

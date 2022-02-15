@@ -131,6 +131,9 @@ const Blog = (arr) => {
                     .first .row {
                         gap: 1rem;
                     }
+                    .second .row {
+                        gap: 3rem;
+                    }
                     .ad {
                         margin-left: 1rem;
                     }
@@ -141,6 +144,9 @@ const Blog = (arr) => {
                     }
                 }
                 @media (min-width:1400px) {
+                    .second .row {
+                        gap: 1rem;
+                    }
                     .mob {
                         visibility: hidden;
                         position: absolute;
