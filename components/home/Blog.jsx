@@ -62,7 +62,7 @@ const Blog = (arr) => {
                         <div className="row">
                             <Post id={4} />
                             <Post id={2} />
-                            <Post id={2} />
+                            <Post id={7} />
                             <Post id={3} />
                         </div>
                     </div>

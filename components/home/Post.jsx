@@ -7,22 +7,38 @@ import Image from "next/image";
 import dateProcessor from "../../lib/dateProcessor";
 import views from "/public/images/views.png";
 const Post = ({id, mob}) => {
+    const pageSrc = data[id].title;  /* to be changed */
+    const categoryLink = data[id].category; /* to be changed */
     const imgSrc = data[id].image;
     return ( mob ?
         <div className="post-background">
-            <Image priority src={imgSrc} height="1000vh" width="1000vw" />
+            <Link href={pageSrc}>
+                <a>
+                    <div className="pic">
+                        <Image priority src={imgSrc} height="1000vh" width="1000vw" />
+                    </div>
+                </a>
+            </Link>
             <div className="category">
-                <p>{data[id].category}</p>
+                <Link href={categoryLink} >
+                    <a>
+                        <p>{data[id].category}</p>
+                    </a>
+                </Link>
             </div>
-            <div className="title">
-                {data[id].title}
-            </div>
+            <Link href={pageSrc}>
+                <a>
+                    <div className="title">
+                        {data[id].title}
+                    </div>
+                </a>
+            </Link>
             <div className="description">
                 {data[id].description}
             </div>
             <div className="date">
                 {dateProcessor(data[id].date)}
-                    <Link href={data[id].title}  /* href to be changed */>
+                    <Link href={pageSrc}>
                         <a>
                             <div className="views">
                                 <div className="image">
@@ -37,6 +53,9 @@ const Post = ({id, mob}) => {
                 .post-background {
                     display: flex;
                     flex-direction: column;
+                }
+                .pic {
+                    margin-bottom: -5px;
                 }
                 .category {
                     border-top: 5px solid #d92121;
@@ -89,31 +108,42 @@ const Post = ({id, mob}) => {
         </div>
         :
         <div className="post-background">
-            <div className="pic">
-                <Image priority src={imgSrc} height="1000vh" width="1000vw" />
-            </div>
+            <Link href={pageSrc} >
+                <a>
+                    <div className="pic">
+                        <Image priority src={imgSrc} height="1000vh" width="1000vw" />
+                    </div>
+                </a>
+            </Link>
             <div className="category">
-                <p>{data[id].category}</p>
+                <Link href={categoryLink} >
+                    <a>
+                        <p>{data[id].category}</p>
+                    </a>
+                </Link>
             </div>
-            <div className="title">
-                {data[id].title}
-            </div>
+            <Link href={pageSrc} >
+                <a>
+                    <div className="title">
+                        {data[id].title}
+                    </div>
+                </a>
+            </Link>
             <div className="description">
                 {data[id].description}
             </div>
-            
             <div className="date">
                 {dateProcessor(data[id].date)}
-                    {/* <Link href={data[id].title} >
-                        <a> */}
-                            <div className="views">
-                                <div className="image">
-                                    <Image src={views} />
-                                </div>
-                                <div className="views-count">{data[id].views}</div>
+                <Link href={pageSrc} >
+                    <a>
+                        <div className="views">
+                            <div className="image">
+                                <Image src={views} />
                             </div>
-                        {/* </a>
-                    </Link> */}
+                            <div className="views-count">{data[id].views}</div>
+                        </div>
+                    </a>
+                </Link>
             </div>
             <style jsx>{`
                 @media (min-width: 800px) {
