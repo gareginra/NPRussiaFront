@@ -1,18 +1,15 @@
 import views from "/public/images/views.png";
 import Image from "next/image";
-import data from "/data/files/posts.js";
 
-const MostReadPost = ({id}) => {
-    const arr = data.slice().sort((a,b) => new Date(a.views) - new Date(b.views)).reverse();
+const MostReadPost = ({id, arr}) => {
     id = id%arr.length;
     if (id < 0) {
-        id = arr.length - id;
+        id = arr.length + id;
     }
     if (id >= arr.length) {
         id = id - arr.length;
     }
-    const post = arr[id]
-    
+    const post = arr[id];    
     return (
         <div className="mrp-background">
             <div className="mrp-number">{id+1}</div>
@@ -32,7 +29,7 @@ const MostReadPost = ({id}) => {
                     position: inherit;
                     background: white;
                     padding: 2rem;
-                    max-width: 270px;
+                    min-width: 270px;
                     display: flex;
                     flex-direction: column;
                     border: 1rem solid #f2f2f2;

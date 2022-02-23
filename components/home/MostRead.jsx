@@ -7,14 +7,13 @@ const MostRead = () => {
     .sort((a, b) => new Date(a.views) - new Date(b.views))
     .reverse();
   const [width, setWidth] = useState(0);
-  const [mrID, setMRID] = useState(0);
   const [count, setCount] = useState(0);
   useEffect(
     () =>
       setInterval(() => {
         if (
           width !==
-          window.document.getElementsByClassName("most-read")[0].offsetWidth
+            window.document.getElementsByClassName("most-read")[0].offsetWidth
         ) {
           width =
             window.document.getElementsByClassName("most-read")[0].offsetWidth;
@@ -23,31 +22,40 @@ const MostRead = () => {
       }, 100),
     []
   );
-  const scrollLeft = (i) => {
-    mrID ? setMRID(mrID - i) : setMRID(arr.length - i);
-  };
-  const scrollRight = (i) => {
-    mrID == arr.length - i ? setMRID(0) : setMRID(mrID + i);
-  };
-  console.log(arr);
   return (
     <div className="mr-background">
       <div className="mr-carousel">
         <div className="mr-top">
           <div className="title">Самое читаемое</div>
-          <div className="arrows">
-            <div className="arrow" onClick={() => setCount(count--)}>
+          <div className="arrows mob">
+            <div className="arrow" onClick={() => setCount(count-1)}>
               ←
             </div>
-            <div className="arrow" onClick={() => setCount(count++)}>
+            <div className="arrow" onClick={() => setCount(count+1)}>
+              →
+            </div>
+          </div>
+          <div className="arrows medium">
+            <div className="arrow" onClick={() => setCount(count-3)}>
+              ←
+            </div>
+            <div className="arrow" onClick={() => setCount(count+3)}>
+              →
+            </div>
+          </div>
+          <div className="arrows wide">
+            <div className="arrow" onClick={() => setCount(count-4)}>
+              ←
+            </div>
+            <div className="arrow" onClick={() => setCount(count+4)}>
               →
             </div>
           </div>
         </div>
         <div className="mr-bottom">
-          {data.map((item) => (
+          {arr.map((item, id) => (
             <div key={item.id}>
-              <MostReadPost id={item.id + count} />
+              <MostReadPost id={id + count} arr={arr} />
             </div>
           ))}
         </div>
@@ -72,6 +80,14 @@ const MostRead = () => {
           .arrows {
             margin-right: 1rem;
           }
+          .medium {
+            position: absolute;
+            visibility: hidden;
+          }
+          .wide {
+            position: absolute;
+            visibility: hidden;
+          }
         }
         @media (min-width: 800px) {
           .mr-four {
@@ -85,6 +101,14 @@ const MostRead = () => {
           .mob {
             visibility: hidden;
             position: absolute;
+          }
+          .medium {
+            position: relative;
+            visibility: visible;
+          }
+          .wide {
+            position: absolute;
+            visibility: hidden;
           }
           .title {
             margin: 0;
@@ -101,6 +125,14 @@ const MostRead = () => {
           .mr-four {
             visibility: visible;
             position: relative;
+          }
+          .medium {
+            position: absolute;
+            visibility: hidden;
+          }
+          .wide {
+            position: relative;
+            visibility: visible;
           }
         }
         .mr-background {
@@ -122,7 +154,7 @@ const MostRead = () => {
         }
         .mr-bottom {
           display: flex;
-          justify-content: space-around;
+          justify-content: left;
           overflow: hidden;
           margin-top: 0.5rem;
         }
