@@ -2,52 +2,21 @@ import React, { useState, useEffect } from "react";
 import MostReadPost from "./MostReadPost";
 import data from "/data/files/posts.js";
 const MostRead = () => {
+  const [count, setCount] = useState(0);
   const arr = data
     .slice()
     .sort((a, b) => new Date(a.views) - new Date(b.views))
     .reverse();
-  const [width, setWidth] = useState(0);
-  const [count, setCount] = useState(0);
-  useEffect(
-    () =>
-      setInterval(() => {
-        if (
-          width !==
-            window.document.getElementsByClassName("most-read")[0].offsetWidth
-        ) {
-          width =
-            window.document.getElementsByClassName("most-read")[0].offsetWidth;
-          setWidth(width);
-        }
-      }, 100),
-    []
-  );
   return (
     <div className="mr-background">
       <div className="mr-carousel">
         <div className="mr-top">
           <div className="title">Самое читаемое</div>
-          <div className="arrows mob">
-            <div className="arrow" onClick={() => setCount(count-1)}>
+          <div className="arrows">
+            <div className="arrow" onClick={() => setCount(count - 1)}>
               ←
             </div>
-            <div className="arrow" onClick={() => setCount(count+1)}>
-              →
-            </div>
-          </div>
-          <div className="arrows medium">
-            <div className="arrow" onClick={() => setCount(count-3)}>
-              ←
-            </div>
-            <div className="arrow" onClick={() => setCount(count+3)}>
-              →
-            </div>
-          </div>
-          <div className="arrows wide">
-            <div className="arrow" onClick={() => setCount(count-4)}>
-              ←
-            </div>
-            <div className="arrow" onClick={() => setCount(count+4)}>
+            <div className="arrow" onClick={() => setCount(count + 1)}>
               →
             </div>
           </div>
@@ -61,82 +30,7 @@ const MostRead = () => {
         </div>
       </div>
       <style jsx>{`
-        @media (min-width: 0px) {
-          .mr-four {
-            visibility: hidden;
-            position: absolute;
-          }
-          .mr-three {
-            visibility: hidden;
-            position: absolute;
-          }
-          .mob {
-            visibility: visible;
-            position: relative;
-          }
-          .title {
-            margin-left: 1rem;
-          }
-          .arrows {
-            margin-right: 1rem;
-          }
-          .medium {
-            position: absolute;
-            visibility: hidden;
-          }
-          .wide {
-            position: absolute;
-            visibility: hidden;
-          }
-        }
-        @media (min-width: 800px) {
-          .mr-four {
-            visibility: hidden;
-            position: absolute;
-          }
-          .mr-three {
-            visibility: visible;
-            position: relative;
-          }
-          .mob {
-            visibility: hidden;
-            position: absolute;
-          }
-          .medium {
-            position: relative;
-            visibility: visible;
-          }
-          .wide {
-            position: absolute;
-            visibility: hidden;
-          }
-          .title {
-            margin: 0;
-          }
-          .arrows {
-            margin-right: 0;
-          }
-        }
-        @media (min-width: 1400px) {
-          .mr-three {
-            visibility: hidden;
-            position: absolute;
-          }
-          .mr-four {
-            visibility: visible;
-            position: relative;
-          }
-          .medium {
-            position: absolute;
-            visibility: hidden;
-          }
-          .wide {
-            position: relative;
-            visibility: visible;
-          }
-        }
         .mr-background {
-          display: flex;
           justify-content: center;
           background-color: #f2f2f2;
           position: absolute;
@@ -144,7 +38,8 @@ const MostRead = () => {
           left: 0;
         }
         .mr-carousel {
-          width: ${width}px;
+          max-width: 75rem;
+          margin: 0 auto;
         }
         .mr-top {
           display: flex;
