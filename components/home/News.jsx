@@ -2,12 +2,20 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import newsData from "/data/files/news";
+// import newsData from "/data/files/news";
 import NewsPreview from "./NewsPreview";
 import NewsService from "../../lib/services/NewsService";
 const News = () => {
   const [newsID, setNewsID] = useState(0);
-
+  const [newsData, setNewsData] = useState([]);
+  useEffect(() => {
+    const newsCheckResponse = async () => {
+      const newsResponse = await NewsService.get();
+      setNewsData(newsResponse);
+    };
+    newsCheckResponse();
+  }, []);
+  console.log(newsData);
   return (
     <div className="news-background">
       <div className="container">
@@ -30,11 +38,11 @@ const News = () => {
           </div>
         </div>
         <div className="carousel">
-          {newsData.map((item, id) => (
+          {/* {newsData.map((item, id) => (
             <div key={item.id}>
               <NewsPreview id={id + newsID} />
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
       <style jsx>{`
