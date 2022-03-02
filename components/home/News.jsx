@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-// import newsData from "/data/files/news";
 import NewsPreview from "./NewsPreview";
 import NewsService from "../../lib/services/NewsService";
 const News = () => {
@@ -15,7 +14,6 @@ const News = () => {
     };
     newsCheckResponse();
   }, []);
-  console.log(newsData);
   return (
     <div className="news-background">
       <div className="container">
@@ -38,11 +36,11 @@ const News = () => {
           </div>
         </div>
         <div className="carousel">
-          {/* {newsData.map((item, id) => (
+          {newsData.slice(newsID).map((item, id) => (
             <div key={item.id}>
-              <NewsPreview id={id + newsID} />
+              <NewsPreview id={id} item={item} />
             </div>
-          ))} */}
+          ))}
         </div>
       </div>
       <style jsx>{`

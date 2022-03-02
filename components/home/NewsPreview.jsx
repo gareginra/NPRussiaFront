@@ -1,28 +1,30 @@
 import Link from "next/link";
-import newsData from "/data/files/news";
 import dateProcessor from "../../lib/dateProcessor";
 
-const NewsPreview = ({ id }) => {
-  id = id % newsData.length;
-  if (id < 0) {
-    id = newsData.length + id;
-  }
-  if (id >= newsData.length) {
-    id = id - newsData.length;
-  }
-  const post = newsData[id];
+const NewsPreview = ({ id, item }) => {
+  const { date, description, link, text, title } = item;
+  // id = id % newsDataLenght;
+  // if (id < 0) {
+  //   id = newsDataLenght + id;
+  // }
+  // if (id >= newsDataLenght) {
+  //   id = id - newsDataLenght;
+  // }
+  // const post = newsData[id];
   return (
     <div className="news-card">
-      <p className="date">{dateProcessor(post.date)}</p>
-      <Link href={"/news" + post.link}>
+      <p className="date">{dateProcessor(date)}</p>
+      <Link href={"/news/" + link}>
         <p className="title">
-          <a>{post.title}</a>
+          <a>{title}</a>
         </p>
       </Link>
       <style jsx>
         {`
           .news-card {
             width: 15rem;
+            padding: 0rem 1rem;
+            border-left: 1px solid gray;
           }
           .date {
             color: gray;
