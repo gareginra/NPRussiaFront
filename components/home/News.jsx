@@ -5,7 +5,7 @@ import Link from "next/link";
 import NewsPreview from "./NewsPreview";
 import NewsService from "../../lib/services/NewsService";
 const News = () => {
-  const [newsID, setNewsID] = useState(0);
+  const [sliderCount, setSliderCount] = useState(0);
   const [newsData, setNewsData] = useState([]);
   useEffect(() => {
     const newsCheckResponse = async () => {
@@ -14,6 +14,14 @@ const News = () => {
     };
     newsCheckResponse();
   }, []);
+
+  useEffect(() => {
+    const newsCheckResponse = async () => {
+      const newsResponse = await NewsService.get();
+      setNewsData(newsResponse.slice(sliderCount));
+    };
+    newsCheckResponse();
+  }, [sliderCount]);
   return (
     <div className="news-background">
       <div className="container">
@@ -26,17 +34,31 @@ const News = () => {
               </Link>
             </div>
             <div className="arrows">
-              <div className="arrow" onClick={() => setNewsID(-1)}>
+              <div
+                className="arrow"
+                onClick={() => {
+                  if (sliderCount > 0) {
+                    setSliderCount(sliderCount - 1);
+                  }
+                }}
+              >
                 ←
               </div>
-              <div className="arrow" onClick={() => setNewsID(+1)}>
+              <div
+                className="arrow"
+                onClick={() => {
+                  if (sliderCount < newsData.length) {
+                    setSliderCount(sliderCount + 1);
+                  }
+                }}
+              >
                 →
               </div>
             </div>
           </div>
         </div>
         <div className="carousel">
-          {newsData.slice(newsID).map((item, id) => (
+          {newsData.map((item, id) => (
             <div key={item.id}>
               <NewsPreview id={id} item={item} />
             </div>

@@ -3,14 +3,6 @@ import dateProcessor from "../../lib/dateProcessor";
 
 const NewsPreview = ({ id, item }) => {
   const { date, description, link, text, title } = item;
-  // id = id % newsDataLenght;
-  // if (id < 0) {
-  //   id = newsDataLenght + id;
-  // }
-  // if (id >= newsDataLenght) {
-  //   id = id - newsDataLenght;
-  // }
-  // const post = newsData[id];
   return (
     <div className="news-card">
       <p className="date">{dateProcessor(date)}</p>
