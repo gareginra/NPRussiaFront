@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from "react";
 import MostReadPost from "./MostReadPost";
-import data from "/data/files/posts.js";
+import BlogService from "../../lib/services/BlogService";
 const MostRead = () => {
+  const [mrData, setMrData] = useState([]);
+  useEffect(() => {
+    const mrCheckResponse = async () => {
+      const mrResponse = await BlogService.get();
+      setMrData(mrResponse);
+    };
+    mrCheckResponse();
+  }, []);
   const [count, setCount] = useState(0);
-  const arr = data
+  const arr = mrData
     .slice()
     .sort((a, b) => new Date(a.views) - new Date(b.views))
-    .reverse();
+    .reverse()
+    .slice(0,20);
   return (
     <div className="mr-background">
       <div className="mr-carousel">
