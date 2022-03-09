@@ -1,15 +1,15 @@
 "use strict";
 
 import React, {useState } from "react";
-import data from "/data/files/posts.js";
 import Link from "next/link";
 import Image from "next/image";
 import dateProcessor from "../../lib/dateProcessor";
 import views from "/public/images/views.png";
-const Post = ({id, mob}) => {
-    const pageSrc = data[id].title;  /* to be changed */
-    const categoryLink = data[id].category; /* to be changed */
-    const imgSrc = data[id].image;
+const Post = ({data, mob}) => {
+    console.log(data)
+    const pageSrc = data.title;  /* to be changed */
+    const categoryLink = data.category; /* to be changed */
+    const imgSrc = data.image;
     return ( mob ?
         <div className="post-background">
             <Link href={pageSrc}>
@@ -22,29 +22,29 @@ const Post = ({id, mob}) => {
             <div className="category">
                 <Link href={categoryLink} >
                     <a>
-                        <p>{data[id].category}</p>
+                        <p>{data.category}</p>
                     </a>
                 </Link>
             </div>
             <Link href={pageSrc}>
                 <a>
                     <div className="title">
-                        {data[id].title}
+                        {data.title}
                     </div>
                 </a>
             </Link>
             <div className="description">
-                {data[id].description}
+                {data.description}
             </div>
             <div className="date">
-                {dateProcessor(data[id].date)}
+                {dateProcessor(data.createdAt)}
                     <Link href={pageSrc}>
                         <a>
                             <div className="views">
                                 <div className="image">
                                     <Image src={views} />
                                 </div>
-                                <div className="views-count">{data[id].views}</div>
+                                <div className="views-count">{data.views}</div>
                             </div>
                         </a>
                     </Link>
@@ -118,29 +118,29 @@ const Post = ({id, mob}) => {
             <div className="category">
                 <Link href={categoryLink} >
                     <a>
-                        <p>{data[id].category}</p>
+                        <p>{data.category}</p>
                     </a>
                 </Link>
             </div>
             <Link href={pageSrc} >
                 <a>
                     <div className="title">
-                        {data[id].title}
+                        {data.title}
                     </div>
                 </a>
             </Link>
             <div className="description">
-                {data[id].description}
+                {data.description}
             </div>
             <div className="date">
-                {dateProcessor(data[id].date)}
+                {dateProcessor(data.createdAt)}
                 <Link href={pageSrc} >
                     <a>
                         <div className="views">
                             <div className="image">
                                 <Image src={views} />
                             </div>
-                            <div className="views-count">{data[id].views}</div>
+                            <div className="views-count">{data.views}</div>
                         </div>
                     </a>
                 </Link>
@@ -155,9 +155,10 @@ const Post = ({id, mob}) => {
                         transition: all 2s;
                     }
                     .pic {
-                        height: 15rem;
-                        width: 15rem;
+                        min-height: 15rem;
+                        max-width: 25rem;
                         object-fit: fill;
+                        margin-bottom: -4px;
                     }
                     .category {
                         border-top: 5px solid #d92121;

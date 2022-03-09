@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import MostRead from "./MostRead";
 import Post from "./Post";
 import BlogService from "../../lib/services/BlogService";
-const Blog = (arr) => {
+const Blog = ({page}) => {
   const [blogData, setBlogData] = useState([]);
   useEffect(() => {
     const blogCheckResponse = async () => {
@@ -13,43 +13,35 @@ const Blog = (arr) => {
     };
     blogCheckResponse();
   }, []);
-  console.log(blogData);
-  return (
+  return (blogData[0] ?
     <div className="blog-background">
       <div className="list">
-        {/* <div className="mob">
-                    <Post id={1} mob/>
-                </div> */}
-        {/* <div className="first half">
-                    <div className="two post-list">
-                        <div className="row">
-                            <Post id={5} />
-                            <Post id={6} />
-                        </div>
-                        <div className="row">
-                            <Post id={7} />
-                            <Post id={8} />
-                        </div>
-                    </div>
-                    <div className="three post-list">
-                        <div className="row">
-                            <Post id={0} />
-                            <Post id={5} />
-                            <Post id={1} />
-                        </div>
-                        <div className="row">
-                            <Post id={4} />
-                            <Post id={2} />
-                            <Post id={3} />
-                        </div>
-                    </div>
-                    <div className="ad">Advertisement</div>
-                </div> */}
-        {/* <div className="most-read">
-                    <MostRead />
-                </div> */}
+        <div className="mob">
+          {blogData.slice(0,10).map((item) => (
+            <Post data={item} mob/>
+          ))}
+        </div>
+        <div className="first">
+            <div className="post-list">
+              {blogData.slice(0,10).map((item) => (
+                <Post data={item} />
+              ))}
+            </div>
+            {/* <div className="ad">Advertisement</div> */}
+        </div>
+        <div className="most-read">
+            <MostRead />
+        </div>
+        <div className="second">
+            <div className="post-list">
+              {blogData.slice(10,20).map((item) => (
+                <Post data={item} />
+              ))}
+            </div>
+            {/* <div className="ad">Advertisement</div> */}
+        </div>
         {/* <div className="half second">
-                    <div className="two post-list">
+                    <div className=" post-list">
                         <div className="row">
                             <Post id={5} />
                             <Post id={6} />
@@ -109,70 +101,18 @@ const Blog = (arr) => {
           }
           .post-list {
             margin-top: 2rem;
+            max-width: 95rem;
             display: flex;
-            justify-content: center;
-            flex-direction: column;
+            flex-wrap: wrap;
+            justify-items: center;
           }
-          .row {
-            display: flex;
-            justify-content: space-between;
-          }
-          .second .row {
-            gap: 1rem;
-          }
-          .half {
-            display: flex;
-            justify-content: center;
-          }
-          .ad {
-            margin: 2rem 0 0 0;
-            width: 20rem;
-            border: 1px dashed green;
-          }
-          .gray-bg div {
-            visibility: hidden;
-          }
+          // .ad {
+          //   margin: 2rem 0 0 0;
+          //   width: 20rem;
+          //   border: 1px dashed green;
+          // }
           .second {
             margin-top: 20rem;
-          }
-        }
-        @media (min-width: 850px) {
-          .first .row {
-            gap: 1rem;
-          }
-          .second .row {
-            gap: 3rem;
-          }
-          .ad {
-            margin-left: 1rem;
-          }
-        }
-        @media (min-width: 900px) {
-          .row {
-            gap: 2rem;
-          }
-        }
-        @media (min-width: 1400px) {
-          .second .row {
-            gap: 1rem;
-          }
-          .mob {
-            visibility: hidden;
-            position: absolute;
-          }
-          .two {
-            visibility: hidden;
-            position: absolute;
-            display: none;
-          }
-          .three div {
-            visibility: visible;
-            position: relative;
-            display: flex;
-          }
-          .three {
-            visibility: visible;
-            position: relative;
           }
         }
         .blog-background {
@@ -185,6 +125,7 @@ const Blog = (arr) => {
         }
       `}</style>
     </div>
+    :<></>
   );
 };
 
