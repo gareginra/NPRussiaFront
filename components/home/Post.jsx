@@ -146,80 +146,73 @@ const Post = ({data, mob}) => {
                 </Link>
             </div>
             <style jsx>{`
-                @media (min-width: 800px) {
-                    .post-background {
-                        display: flex;
-                        flex-direction: column;
-                        max-width: 15rem;
-                        margin: 0 auto 1rem auto;
-                        transition: all 2s;
-                    }
-                    .pic {
-                        min-height: 15rem;
-                        max-width: 25rem;
-                        object-fit: fill;
-                        margin-bottom: -4px;
-                    }
-                    .category {
-                        border-top: 5px solid #d92121;
-                        overflow: hidden;
-                        margin-right: auto;
-                        letter-spacing: 1px;
-                        text-transform: uppercase;
-                        color: #d92121;
-                        font-weight: bold;
-                        cursor: pointer;
-                        font-size: .75rem;
-                    }
-                    .category:hover {
-                        color: #999999
-                    }
-                    .title {
-                        font-size: 2rem;
-                        font-weight: bold;
-                        color: #1a1a1a;
-                        letter-spacing: 1px;
-                        cursor: pointer;
-                        transition: all .2s;
-                    }
-                    .title:hover {
-                        color: #d92121;
-                    }
-                    .description {
-                        font-size: 1.2rem;
-                        color: #1a1a1a;
-                        line-height: 1.5rem;
-                        padding: .75rem 0 .75rem 0;
-                    }
-                    .date {
-                        display: flex;
-                        font-size: .7rem;
-                        font-weight: bold;
-                        color: #999999;
-                        letter-spacing: 1px;
-                        text-transform: uppercase;
-                    }
-                    .views {
-                        display: flex;
-                        margin-left: 2rem;
-                    }
-                    .image {
-                        max-height: .9rem;
-                        margin-top: .1rem;
-                        overflow: hidden;
-                    }
-                    .views-count {
-                        margin-left: .5rem;
-                        margin-top: .1rem;
-                    }
-                    .views-count:hover {
-                        color: #d92121;
-                    }
-                } 
-                @media (min-width: 1400px) {
-                    .post-background {
-                        max-width: 17rem;
-                    }
+                .post-background {
+                    display: flex;
+                    flex-direction: column;
+                    max-width: 15rem;
+                    margin: 0 auto 1rem auto;
+                    transition: all 2s;
+                }
+                .pic {
+                    min-height: 15rem;
+                    max-width: 25rem;
+                    object-fit: fill;
+                    margin-bottom: -4px;
+                }
+                .category {
+                    border-top: 5px solid #d92121;
+                    overflow: hidden;
+                    margin-right: auto;
+                    letter-spacing: 1px;
+                    text-transform: uppercase;
+                    color: #d92121;
+                    font-weight: bold;
+                    cursor: pointer;
+                    font-size: .75rem;
+                }
+                .category:hover {
+                    color: #999999
+                }
+                .title {
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    color: #1a1a1a;
+                    letter-spacing: 1px;
+                    cursor: pointer;
+                    transition: all .2s;
+                }
+                .title:hover {
+                    color: #d92121;
+                }
+                .description {
+                    font-size: 1rem;
+                    color: #1a1a1a;
+                    line-height: 1.5rem;
+                    padding: .75rem 0 .75rem 0;
+                }
+                .date {
+                    display: flex;
+                    font-size: .7rem;
+                    font-weight: bold;
+                    color: #999999;
+                    letter-spacing: 1px;
+                    text-transform: uppercase;
+                }
+                .views {
+                    display: flex;
+                    margin-left: 2rem;
+                }
+                .image {
+                    max-height: .9rem;
+                    margin-top: .1rem;
+                    overflow: hidden;
+                }
+                .views-count {
+                    margin-left: .5rem;
+                    margin-top: .1rem;
+                }
+                .views-count:hover {
+                    color: #d92121;
                 }
             `}</style>
         </div>
