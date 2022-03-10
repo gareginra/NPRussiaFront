@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import MostRead from "./MostRead";
 import Post from "./Post";
 import BlogService from "../../lib/services/BlogService";
-const Blog = ({ page }) => {
+const Blog = ({ page=1 }) => {
   const [blogData, setBlogData] = useState([]);
   useEffect(() => {
     const blogCheckResponse = async () => {
@@ -16,12 +16,6 @@ const Blog = ({ page }) => {
   return (
     <div className="blog-background">
       <div className="list">
-          <div className="mob">
-            {blogData &&
-                blogData
-                  .slice(0, 12)
-                  .map((item) => <Post key={item.id} data={item} />)}
-          </div>
           <div className="post-list">
             {blogData &&
               blogData
@@ -31,12 +25,6 @@ const Blog = ({ page }) => {
         <div className="most-read">
           <MostRead />
         </div>
-        <div className="mob">
-          {blogData &&
-              blogData
-                .slice(12, 20)
-                .map((item) => <Post key={item.id} data={item} />)}
-        </div>
         <div className="post-list">
           {blogData &&
             blogData
@@ -45,23 +33,7 @@ const Blog = ({ page }) => {
         </div>
       </div>
       <style jsx>{`
-        @media (min-width: 0px) {
-          .mob {
-            visibility: visible;
-            position: relative;
-          }
-          .post-list {
-            visibility: hidden;
-            position: absolute;
-            display: none;
-          }
-        }
         @media (min-width: 600px) {
-          .mob {
-            visibility: hidden;
-            position: absolute;
-            display: none;
-          }
           .list {
             display: flex;
             flex-direction: column;
@@ -69,8 +41,6 @@ const Blog = ({ page }) => {
             justify-content: center;
           }
           .post-list {
-            visibility: visible;
-            position: relative;
             margin-top: 2rem;
             display: flex;
             flex-wrap: wrap;
