@@ -20,7 +20,7 @@ const Blog = ({ page }) => {
             {blogData &&
                 blogData
                   .slice(0, 12)
-                  .map((item) => <Post key={item.id} data={item} mob />)}
+                  .map((item) => <Post key={item.id} data={item} />)}
           </div>
           <div className="post-list">
             {blogData &&
@@ -35,7 +35,7 @@ const Blog = ({ page }) => {
           {blogData &&
               blogData
                 .slice(12, 20)
-                .map((item) => <Post key={item.id} data={item} mob />)}
+                .map((item) => <Post key={item.id} data={item} />)}
         </div>
         <div className="post-list">
           {blogData &&
@@ -53,6 +53,7 @@ const Blog = ({ page }) => {
           .post-list {
             visibility: hidden;
             position: absolute;
+            display: none;
           }
         }
         @media (min-width: 600px) {
@@ -66,11 +67,6 @@ const Blog = ({ page }) => {
             flex-direction: column;
             max-width: 75rem;
             justify-content: center;
-          }
-          .three div {
-            visibility: hidden;
-            position: absolute;
-            display: none;
           }
           .post-list {
             visibility: visible;
