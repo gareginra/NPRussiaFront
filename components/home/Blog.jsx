@@ -19,24 +19,30 @@ const Blog = ({ page }) => {
           <div className="mob">
             {blogData &&
                 blogData
-                  .slice(0, 10)
+                  .slice(0, 12)
                   .map((item) => <Post key={item.id} data={item} mob />)}
           </div>
           <div className="post-list">
             {blogData &&
               blogData
-                .slice(0, 10)
+                .slice(0, 12)
                 .map((item) => <Post key={item.id} data={item} />)}
           </div>
         <div className="most-read">
           <MostRead />
         </div>
-          <div className="post-list">
-            {blogData &&
+        <div className="mob">
+          {blogData &&
               blogData
-                .slice(10, 20)
-                .map((item) => <Post key={item.id} data={item} />)}
-          </div>
+                .slice(12, 20)
+                .map((item) => <Post key={item.id} data={item} mob />)}
+        </div>
+        <div className="post-list">
+          {blogData &&
+            blogData
+              .slice(12, 20)
+              .map((item) => <Post key={item.id} data={item} />)}
+        </div>
       </div>
       <style jsx>{`
         @media (min-width: 0px) {
@@ -81,6 +87,7 @@ const Blog = ({ page }) => {
           justify-content: center;
         }
         .most-read {
+          margin-top: 2rem;
           height: 24rem;
         }
       `}</style>

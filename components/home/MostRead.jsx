@@ -64,7 +64,7 @@ const MostRead = () => {
         }
         .title {
           overflow: hidden;
-          margin-right: auto;
+          margin: 0 auto 0 1rem;
           letter-spacing: 1px;
           text-transform: uppercase;
           color: #d92121;

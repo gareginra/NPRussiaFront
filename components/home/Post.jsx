@@ -15,7 +15,7 @@ const Post = ({data, mob}) => {
             <Link href={pageSrc}>
                 <a>
                     <div className="pic">
-                        <Image priority src={imgSrc} height="1000vh" width="1000vw" />
+                        <Image priority src={imgSrc} layout="fill" objectFit="cover" />
                     </div>
                 </a>
             </Link>
@@ -28,12 +28,12 @@ const Post = ({data, mob}) => {
             </div>
             <Link href={pageSrc}>
                 <a>
-                    <div className="title">
+                    <div className="title" title={data.title}>
                         {data.title}
                     </div>
                 </a>
             </Link>
-            <div className="description">
+            <div className="description" title={data.description}>
                 {data.description}
             </div>
             <div className="date">
@@ -51,11 +51,14 @@ const Post = ({data, mob}) => {
             </div>
             <style jsx>{`
                 .post-background {
+                    padding: .5rem .5rem 0 .5rem;
                     display: flex;
                     flex-direction: column;
                 }
                 .pic {
-                    margin-bottom: -5px;
+                    position: relative;
+                    width: 100%;
+                    min-height: 20rem;
                 }
                 .category {
                     border-top: 5px solid #d92121;
@@ -71,6 +74,12 @@ const Post = ({data, mob}) => {
                 .title {
                     font-size: 2rem;
                     font-weight: bold;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                            line-clamp: 2; 
+                    -webkit-box-orient: vertical;
                     margin: 0 .5rem 0 .5rem;
                     color: #1a1a1a;
                 }
@@ -79,7 +88,13 @@ const Post = ({data, mob}) => {
                     color: #1a1a1a;
                     margin: 0 .5rem 0 .5rem;
                     line-height: 1.5rem;
-                    padding: .75rem 0 .75rem 0;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                            line-clamp: 3; 
+                    -webkit-box-orient: vertical;
+                    margin: .5rem 0 0 .5rem;
                 }
                 .date {
                     display: flex;
@@ -111,7 +126,7 @@ const Post = ({data, mob}) => {
             <Link href={pageSrc} >
                 <a>
                     <div className="pic">
-                        <Image priority src={imgSrc} height="1000vh" width="1000vw" />
+                        <Image priority src={imgSrc} layout="fill" objectFit="cover"/>
                     </div>
                 </a>
             </Link>
@@ -124,12 +139,12 @@ const Post = ({data, mob}) => {
             </div>
             <Link href={pageSrc} >
                 <a>
-                    <div className="title">
+                    <div className="title" title={data.title}>
                         {data.title}
                     </div>
                 </a>
             </Link>
-            <div className="description">
+            <div className="description" title={data.description}>
                 {data.description}
             </div>
             <div className="date">
@@ -149,15 +164,14 @@ const Post = ({data, mob}) => {
                 .post-background {
                     display: flex;
                     flex-direction: column;
-                    max-width: 15rem;
-                    margin: 0 auto 1rem auto;
+                    max-width: 16rem;
+                    margin: 1rem;
                     transition: all 2s;
                 }
                 .pic {
+                    position: relative;
                     min-height: 15rem;
                     max-width: 25rem;
-                    object-fit: fill;
-                    margin-bottom: -4px;
                 }
                 .category {
                     border-top: 5px solid #d92121;
@@ -178,6 +192,12 @@ const Post = ({data, mob}) => {
                     font-weight: bold;
                     color: #1a1a1a;
                     letter-spacing: 1px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                            line-clamp: 2; 
+                    -webkit-box-orient: vertical;
                     cursor: pointer;
                     transition: all .2s;
                 }
@@ -188,7 +208,13 @@ const Post = ({data, mob}) => {
                     font-size: 1rem;
                     color: #1a1a1a;
                     line-height: 1.5rem;
-                    padding: .75rem 0 .75rem 0;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                            line-clamp: 3; 
+                    -webkit-box-orient: vertical;
+                    margin: .75rem 0 .75rem 0;
                 }
                 .date {
                     display: flex;
