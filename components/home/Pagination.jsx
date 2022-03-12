@@ -1,81 +1,32 @@
 "use strict";
 
 import React, { useState } from "react";
+import paginationArray from "../../lib/paginationArray";
 
 const Pagination = ({page=1, last, moveToPage, addPosts}) => {
     if (page > last || page <= 0) {
         return;
     }
-    const [pageNumber, setPageNumber] = useState(page);
+    let inner = paginationArray(page, last);
     return (
         <div className="pag-background">
             <div className="pag-box mob" onClick={() => addPosts()}>Показать ещё</div>
             <div className="pag-box wide-screen">
-                {pageNumber > 1 ?
-                    <>
-                        <div className="clickable back" onClick={()=> {moveToPage(pageNumber-1); setPageNumber(pageNumber-1)}}>Назад</div>
-                        <div className="clickable square" onClick={()=> {moveToPage(1); setPageNumber(1)}}>1</div>
-                        {pageNumber > 4 ?
-                            <>
-                                <div className="square">…</div>
-                                <div className="clickable square" onClick={()=> {moveToPage(pageNumber-2); setPageNumber(pageNumber-2)}}>{pageNumber-2}</div>
-                                <div className="clickable square" onClick={()=> {moveToPage(pageNumber-1); setPageNumber(pageNumber-1)}}>{pageNumber-1}</div>
-                                <div className="unclickable square">{pageNumber}</div>
-                            </>
-                        :
-                            pageNumber == 2 ?
-                                <div className="unclickable square">2</div>
-                            :
-                                <>
-                                    <div className="clickable square" onClick={()=> {moveToPage(2); setPageNumber(2)}}>2</div>
-                                    {pageNumber == 3 ?
-                                        <div className="unclickable square">3</div>
-                                    :
-                                        <>
-                                            <div className="clickable square" onClick={()=> {moveToPage(3); setPageNumber(3)}}>3</div>
-                                            <div className="unclickable square">4</div>
-                                        </>
-                                    }
-                                </>
-                        }
-                    </>
+                {page > 1 ?
+                    <div className="clickable back" onClick={()=> {moveToPage(page-1)}}>Назад</div>
                 :
-                    <>
-                        <div className="unclickable back">Назад</div>
-                        <div className="unclickable square">1</div>
-                    </>
+                    <div className="unclickable back">Назад</div>
                 }
-                {pageNumber !== last ?
-                    last-pageNumber == 1 ?
-                        <>
-                            <div className="clickable square" onClick={()=> {moveToPage(last);  setPageNumber(last)}}>{last}</div>
-                            <div className="clickable forward" onClick={()=> {moveToPage(pageNumber+1); setPageNumber(pageNumber+1)}}>Вперёд</div>
-                        </>
+                {inner.map((i) => 
+                    i == page ?
+                        <div className="unclickable square">{i}</div>
                     :
-                        last-pageNumber == 2 ?
-                            <>
-                                <div className="clickable square" onClick={()=> {moveToPage(pageNumber+1); setPageNumber(pageNumber+1)}}>{pageNumber+1}</div>
-                                <div className="clickable square" onClick={()=> {moveToPage(last); setPageNumber(last)}}>{last}</div>
-                                <div className="clickable forward" onClick={()=> {moveToPage(pageNumber+1); setPageNumber(pageNumber+1)}}>Вперёд</div>
-                            </>
-                        :
-                            last - pageNumber == 3 ?
-                                <>
-                                    <div className="clickable square" onClick={()=> {moveToPage(pageNumber+1); setPageNumber(pageNumber+1)}}>{pageNumber+1}</div>
-                                    <div className="clickable square" onClick={()=> {moveToPage(pageNumber+2); setPageNumber(pageNumber+2)}}>{pageNumber+2}</div>
-                                    <div className="clickable square" onClick={()=> {moveToPage(last); setPageNumber(last)}}>{last}</div>
-                                    <div className="clickable forward" onClick={()=> {moveToPage(pageNumber+1); setPageNumber(pageNumber+1)}}>Вперёд</div>
-                                </>
-                            :
-                                <>
-                                    <div className="clickable square" onClick={()=> {moveToPage(pageNumber+1); setPageNumber(pageNumber+1)}}>{pageNumber+1}</div>
-                                    <div className="clickable square" onClick={()=> {moveToPage(pageNumber+2); setPageNumber(pageNumber+2)}}>{pageNumber+2}</div>
-                                    <div className="square">…</div>
-                                    <div className="clickable square" onClick={()=> {moveToPage(last); setPageNumber(last)}}>{last}</div>
-                                    <div className="clickable forward" onClick={()=> {moveToPage(pageNumber+1); setPageNumber(pageNumber+1)}}>Вперёд</div>
-                                </>
-                :
+                        <div className="clickable square" onClick={()=> {moveToPage(i)}}>{i}</div>
+                )}
+                {page == last ?
                     <div className="unclickable forward">Вперёд</div>
+                :
+                    <div className="clickable forward" onClick={()=> {moveToPage(page+1)}}>Вперёд</div>
                 }
             </div>
             <style jsx>{`

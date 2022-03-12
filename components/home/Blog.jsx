@@ -5,7 +5,8 @@ import MostRead from "./MostRead";
 import Post from "./Post";
 import BlogService from "../../lib/services/BlogService";
 import Pagination from "./Pagination";
-const Blog = ({ page=1 }) => {
+const Blog = ({ startingPage=1 }) => {
+  const [page, setPage] = useState(startingPage);
   const [blogData, setBlogData] = useState([]);
   const [pageData, setPageData] = useState([]);
   useEffect(() => {
@@ -19,6 +20,7 @@ const Blog = ({ page=1 }) => {
   }, []);
   const changePage = (i) => {
     setPageData(blogData.slice((i-1)*20, (i-1)*20+20));
+    setPage(i);
   }
   const addPosts = () => {
     setPageData(blogData.slice(0, pageData.length + 20));
