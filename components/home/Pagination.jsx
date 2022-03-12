@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+"use strict";
+
+import React, { useState } from "react";
 
 const Pagination = ({page=1, last, moveToPage, addPosts}) => {
-    if (page > last || pageNumber <= 0) {
+    if (page > last || page <= 0) {
         return;
     }
     const [pageNumber, setPageNumber] = useState(page);
