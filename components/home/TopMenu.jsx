@@ -177,7 +177,6 @@ const TopMenu = () => {
                     font-weight: bold;
                     margin: auto;
                     margin-left: -0.75 rem;
-                
                 }
                 .logo {
                     text-shadow:
