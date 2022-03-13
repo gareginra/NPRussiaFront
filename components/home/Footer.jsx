@@ -5,7 +5,19 @@ import Link from "next/link";
 import Image from "next/image";
 
 const Footer = () => {
-
+    const firstColumn = [{link: "/news", text: "Новости"},
+                         {link: "/photo", text: "Фотопроекты"},
+                         {link: "archives.nprussia.org", text: "Архив NPRussia.org"}];
+    const secondColumn = [{link: "/about", text: "О проекте"},
+                          {link: "/authors", text: "Авторы"},
+                          {link: "/sponsors", text: "Попечители"},
+                          {link: "/help", text: "Помоги сайту"},
+                          {link: "/thanks", text: "Нам помогают"},
+                          {link: "/partnership", text: "Партнёрство"},
+                          {link: "/mailing", text: "Рассылка"}];
+    const specialProjects = [{link: "/young_russia", text: "Молодая Россия"},
+                             {link: "/bridges", text: "Мосты"},
+                             {link: "/portraits", text: "Онлайн-портреты современных немецких"}];
     return (
         <footer>
             <div className="double-box">
@@ -27,58 +39,36 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className="social flex-item wide">
-                        <Link href="/news">
-                                <a>
-                                    <p className="soc-text">Новости</p>
-                                </a>
-                        </Link>
-                        <Link href="/photo">
-                                <a>
-                                    <p className="soc-text">Фотопроекты</p>
-                                </a>
-                        </Link>
-                        <Link href="archives.nprussia.org">
-                                <a className="last">
-                                    <p className="soc-text">Архив NPRussia.org</p>
-                                </a>
-                        </Link>
+                        {firstColumn.map((item, index) => 
+                            index == firstColumn.length-1? 
+                                <Link href={item.link} key={index}>
+                                    <a className="last">
+                                        <p className="soc-text">{item.text}</p>
+                                    </a>
+                                </Link>
+                            :
+                                <Link href={item.link} key={index}>
+                                    <a>
+                                        <p className="soc-text">{item.text}</p>
+                                    </a>
+                                </Link>
+                        )}
                     </div>
                     <div className="social flex-item wide">
-                        <Link href="/about">
-                                <a>
-                                    <p className="soc-text">О проекте</p>
-                                </a>
-                        </Link>
-                        <Link href="/authors">
-                                <a>
-                                    <p className="soc-text">Авторы</p>
-                                </a>
-                        </Link>
-                        <Link href="/sponsorship">
-                                <a>
-                                    <p className="soc-text">Попечители</p>
-                                </a>
-                        </Link>
-                        <Link href="/help">
-                                <a>
-                                    <p className="soc-text">Помоги сайту</p>
-                                </a>
-                        </Link>
-                        <Link href="/thanks">
-                                <a>
-                                    <p className="soc-text">Нам помогают</p>
-                                </a>
-                        </Link>
-                        <Link href="/partnership">
-                                <a>
-                                    <p className="soc-text">Партнёрство</p>
-                                </a>
-                        </Link>
-                        <Link href="/mailing">
-                                <a className="last">
-                                    <p className="soc-text">Рассылка</p>
-                                </a>
-                        </Link>
+                        {secondColumn.map((item, index) => 
+                            index == secondColumn.length-1? 
+                                <Link href={item.link} key={index}>
+                                    <a className="last">
+                                        <p className="soc-text">{item.text}</p>
+                                    </a>
+                                </Link>
+                            :
+                                <Link href={item.link} key={index}>
+                                    <a>
+                                        <p className="soc-text">{item.text}</p>
+                                    </a>
+                                </Link>
+                        )}
                     </div>
                     <div className="social flex-item">
                         <Link href="fb.com/">
@@ -114,21 +104,20 @@ const Footer = () => {
                     </div>
                     <div className="social flex-item wide">
                         <a className="special"><p className="soc-text">Спецпроекты NPRussia.org</p></a>
-                        <Link href="/young_russia">
-                            <a>
-                                <p className="soc-text">Молодая Россия</p>
-                            </a>
-                        </Link>
-                        <Link href="/bridges">
-                            <a>
-                                <p className="soc-text">Мосты</p>
-                            </a>
-                        </Link>
-                        <Link href="/portraits">
-                            <a className="last">
-                                <p className="soc-text">Онлайн-портреты современных немецких</p>
-                            </a>
-                        </Link>
+                        {specialProjects.map((item, index) => 
+                            index == specialProjects.length-1? 
+                                <Link href={item.link} key={index}>
+                                    <a className="last">
+                                        <p className="soc-text">{item.text}</p>
+                                    </a>
+                                </Link>
+                            :
+                                <Link href={item.link} key={index}>
+                                    <a>
+                                        <p className="soc-text">{item.text}</p>
+                                    </a>
+                                </Link>
+                        )}
                     </div>
                     <div className="additional-mob flex-item">
                         <p className="add-text rights">
@@ -186,18 +175,6 @@ const Footer = () => {
                         -1px  1px 0 #fff,
                         1px  1px 0 #fff;
                     color: black;
-                }
-                .logo:hover {
-                    transition: all .75s;
-                    background-image: linear-gradient(to bottom, white, white, blue, red, red);
-                    text-shadow:
-                        3px  3px 3px rgb(0, 0, 0,.1),
-                        -1px -1px 3px rgb(0, 0, 0,.1),  
-                        1px -1px 3px rgb(0, 0, 0,.1),
-                        -1px  1px 3px rgb(0, 0, 0,.1),
-                        1px  1px 3px rgb(0, 0, 0,.1);
-                    background-clip: text;
-                    color: transparent;
                 }
                 @media (min-width: 0px) {
                     p {

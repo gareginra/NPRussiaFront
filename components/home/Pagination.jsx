@@ -17,11 +17,11 @@ const Pagination = ({page=1, last, moveToPage, addPosts}) => {
                 :
                     <div className="unclickable back">Назад</div>
                 }
-                {inner.map((i) => 
+                {inner.map((i, index) => 
                     i == page ?
-                        <div className="unclickable square">{i}</div>
+                        <div className="unclickable square" key={index}>{i}</div>
                     :
-                        <div className="clickable square" onClick={()=> {moveToPage(i)}}>{i}</div>
+                        <div className="clickable square" onClick={()=> {moveToPage(i)}} key={index}>{i}</div>
                 )}
                 {page == last ?
                     <div className="unclickable forward">Вперёд</div>
