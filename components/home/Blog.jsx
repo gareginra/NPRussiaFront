@@ -47,8 +47,10 @@ const Blog = ({ startingPage=1 }) => {
               .slice(12)
               .map((item) => <Post key={item.id} data={item} />)}
         </div>}
-        {pageData[0] && 
-          <Pagination page={page} last={lastPage} moveToPage={changePage} addPosts={addPosts} />} {/* last to be changed */}
+        <div className="pagination">
+          {pageData[0] && 
+            <Pagination page={page} last={lastPage} moveToPage={changePage} addPosts={addPosts} />} {/* last to be changed */}
+        </div>
       </div>
       <style jsx>{`
         @media (min-width: 600px) {
@@ -67,6 +69,9 @@ const Blog = ({ startingPage=1 }) => {
           .bottom {
             margin: 0;
           }
+          .pagination {
+            margin-bottom: 2rem;
+          }
         }
         .blog-background {
           width: 100%;
@@ -76,6 +81,10 @@ const Blog = ({ startingPage=1 }) => {
         .most-read {
           margin-top: 2rem;
           height: 22rem;
+        }
+        .pagination {
+          position: relative;
+          height: 6rem;
         }
       `}</style>
     </div>

@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-const Menu = () => {
+
+const Menu = (langToggle, query) => {
   const [visibility, setVisibility] = useState("hidden");
   const [position, setPosition] = useState("absolute");
   useEffect(() => {
@@ -12,13 +13,11 @@ const Menu = () => {
         setPosition(document.getElementsByClassName("Menu")[0].getBoundingClientRect().top ? "absolute" : "relative");
       }
     }, 100)
-  });
+  }, []);
   return (
     <>
       <div className="menu-background">
         <div className="menu">
-
-        
           <ul>
             <li className="logo-box">
               <div>
@@ -38,9 +37,27 @@ const Menu = () => {
             <li>Общество</li>
             <li>Наука</li>
             <li>Colta Specials</li>
+            {query.l === 'en' ?
+              <li className="lang">
+                <Link href={{query: query}} onClick={() => langToggle()} >
+                  <a>
+                    Русский
+                  </a>
+                </Link>
+              </li>
+            :
+              <li className="lang">
+                <Link href={{query: query}} onClick={() => langToggle()} >
+                  <a>
+                    English
+                  </a>
+                </Link>
+              </li>
+            }
           </ul>
         </div>
       </div>
+      
       <style jsx>{`
         @media (min-width: 0px) {
           .menu {
@@ -74,7 +91,7 @@ const Menu = () => {
           .logo {
             text-shadow:
                 3px  3px 0 #fff,
-                -1px -1px 0 #fff,  
+                -1px -1px 0 #fff,
                 1px -1px 0 #fff,
                 -1px  1px 0 #fff,
                 1px  1px 0 #fff;
@@ -82,6 +99,10 @@ const Menu = () => {
           }
         }
         @media (min-width: 800px) {
+          .lang {
+            display: none;
+            position: absolute;
+          }
           .logo-box {
             position: ${position};
             visibility: ${visibility};

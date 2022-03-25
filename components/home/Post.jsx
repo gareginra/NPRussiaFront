@@ -6,7 +6,7 @@ import Image from "next/image";
 import dateProcessor from "../../lib/dateProcessor";
 import views from "/public/images/views.png";
 const Post = ({data}) => {
-    const pageSrc = data.title;  /* to be changed */
+    const pageSrc = `/post/${data.slug}`;  /* to be changed */
     const categoryLink = data.category; /* to be changed */
     const imgSrc = data.image;
     return (

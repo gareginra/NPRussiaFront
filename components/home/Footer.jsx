@@ -153,6 +153,7 @@ const Footer = () => {
             </div>
             <style jsx>{`
                 footer {
+                    position: relative;
                     background-color: #1a1a1a;
                     width: 100%;
                     display: flex;
@@ -234,11 +235,6 @@ const Footer = () => {
                         visibility: hidden;
                         position: absolute;
                         display: none;
-                    }
-                }
-                @media (min-width: 600px) {
-                    footer {
-                        margin-top: 6rem;
                     }
                 }
                 @media (min-width: 615px) {
@@ -336,7 +332,7 @@ const Footer = () => {
                 }
                 @media (min-width: 79rem) {
                     footer {
-                        margin-top: 2rem;
+                        // margin-top: 2rem;
                     }
                     .info-box {
                         margin-top: 2rem;

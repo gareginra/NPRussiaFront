@@ -4,7 +4,6 @@ import Image from "next/dist/client/image";
 import MenuButton from "./MenuButton";
 import Menu from "/components/home/Menu.jsx";
 import fb from "/data/files/images/fb.png";
-import vk from "/data/files/images/vk.png";
 import telegram from "/data/files/images/telegram.png";
 import twitter from "/data/files/images/twitter.png";
 import rss from "/data/files/images/rss.png";
@@ -13,9 +12,17 @@ import search from "/data/files/images/search.png";
 import nav from "/data/files/images/nav.png";
 import searchMob from "/data/files/images/searchMob.png";
 import cross from "/data/files/images/header_close.png";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+
 const TopMenu = () => {
     const [clicked, setClick] = useState(false);
+    const query = useRouter().query;
+    const langToggle = () => {
+    console.log(query)
+
+        query.l = query.l == 'en' ? 'ru' : 'en';
+    }
     const [menu, setMenu] = useState(false);
     const menuToggle = () => {
         setMenu(!menu)
@@ -27,13 +34,12 @@ const TopMenu = () => {
     const backToWhiteMenu = () => {
         setClick(clicked = false);
         setMenu(menu = false);
-        //setSearch(search = false) later
+        //setSearch(search = false) /* later */
     }
     return (
         <>
             {!clicked ?
                 <div className="mobileTopbar">
-                    
                         <div className="navIcon">
                             <Image src={nav} height="35px" width="36px" onClick={() => menuToggle()}/>
                         </div>
@@ -65,7 +71,11 @@ const TopMenu = () => {
                     </div>
                 </div>
             }
-            {menu?<Menu />:''}
+            {menu&&
+                <div className="menu-mob">
+                    <Menu langToggle={langToggle()} query={query} />
+                </div>
+            }
             <div className="topbar">
                 <nav>
                     <div className="categories">
@@ -85,7 +95,11 @@ const TopMenu = () => {
                     <span className="right-side">
                         <div className="links">
                             <MenuButton link="https://fb.com" img={fb} />
-                            <MenuButton link="https://vk.com" img={vk} />
+                            {query.l == 'en' ? 
+                                <MenuButton toggler="Ru" langToggle={langToggle} />
+                            :
+                                <MenuButton toggler="En" langToggle={langToggle} />
+                            }
                             <MenuButton link="https://t.me" img={telegram} />
                             <MenuButton link="https://twitter.com" img={twitter}  />
                             <MenuButton link="/feed" img={rss} />
@@ -148,14 +162,17 @@ const TopMenu = () => {
                     visibility: hidden;
                     height: 0;
                 }
+                .menu-mob {
+                    display: none;
+                }
                 .topbar {
                     visibility: visible;
-                    z-index:2;
+                    z-index: 3;
                     display: flex;
                     position: relative;
                     background-color: #ffffff;
                     min-height: 3rem;
-                    align-items:center;
+                    align-items: center;
                     justify-content: center;
                 }
                 nav {
@@ -189,7 +206,7 @@ const TopMenu = () => {
                 }
                 .logo:hover {
                     transition: all 2s;
-                    background-image: linear-gradient(to bottom, white, white, blue, red, red);
+                    background-image: linear-gradient(to bottom, white, white, #0083D6, white, white);
                     text-shadow:
                         3px  3px 3px rgb(0, 0, 0,.1),
                         -1px -1px 3px rgb(0, 0, 0,.1),  
