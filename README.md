@@ -1,3 +1,5 @@
+# This is a blog project I did for Denis Balandin. I added "return examplePosts;" and "return exampleNews;" in /lib/services/BlogService.js and NewsService.js to present the site without backend.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

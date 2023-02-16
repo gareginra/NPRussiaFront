@@ -18,7 +18,7 @@ const Pagination = ({page=1, last, moveToPage, addPosts}) => {
                     <div className="unclickable back">Назад</div>
                 }
                 {inner.map((i, index) => 
-                    i == page ?
+                    i == page || i == "…" ?
                         <div className="unclickable square" key={index}>{i}</div>
                     :
                         <div className="clickable square" onClick={()=> {moveToPage(i)}} key={index}>{i}</div>
