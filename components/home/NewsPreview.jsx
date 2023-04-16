@@ -2,10 +2,10 @@ import Link from "next/link";
 import dateProcessor from "../../lib/dateProcessor";
 
 const NewsPreview = ({ id, item }) => {
-  const { createdAt, description, slug, text, title } = item;
+  const { date, description, slug, text, title } = item;
   return (
     <div className="news-card">
-      <p className="date">{dateProcessor(createdAt)}</p>
+      <p className="date">{dateProcessor(date)}</p>
       <Link href={"/news/" + slug}>
         <p className="title">
           <a>{title}</a>

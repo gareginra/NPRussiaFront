@@ -8,10 +8,11 @@ const NewsStrip = () => {
     useEffect(() => {
         const newsCheckResponse = async () => {
             const newsResponse = await NewsService.get();
-            setNewsData(newsArray(newsResponse.reverse().slice(0,5)));
+            setNewsData(newsArray(newsResponse.sort((a,b)=>{return new Date(b.createdAt)-new Date(a.createdAt)}).slice(0,5)));
         };
         newsCheckResponse();
     }, [])
+    console.log(newsData)
     return (
         <div className="ns-background">
             <div className="ns-title">Новости</div>
